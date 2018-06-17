@@ -128,7 +128,6 @@ session_start();
                     <th>DIRECCIÓN</th>
                     <th>TELÉFONO</th>
                     <th>CORREO ELECTRÓNICO</th>
-                    <th>ELIMINAR</th>
                     <th>ACTUALIZAR</th>
 
                 </tr>
