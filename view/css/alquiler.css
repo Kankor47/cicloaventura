@@ -1,0 +1,115 @@
+*{
+    margin: 0;
+    padding-top: 0;
+}
+html {
+
+  -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+}
+body{
+
+    background:#fff;
+
+}
+
+@font-face {
+    font-family: Simplifica;
+    src: url(../webfonts/SIMPLIFICA.ttf);
+}
+
+h1{
+    font-size:45px;
+    font-weight: bold;
+    color: #777777;
+}
+
+p{
+    font-size:15px;
+    font-family: Microsoft Yi Baiti;
+    text-align: center;
+    padding-bottom:10px;
+}
+.titulo_menu{
+    padding-top:30px; 
+    padding-bottom: 30px;
+    margin-bottom: 1px;
+    font-family: Simplifica;
+    text-align: center;
+    background-color: #ededed; ;
+}
+
+
+nav{ 
+    position: fixed;
+    left: -35px;
+    top: 30%;
+}
+nav ul{
+    list-style: none;
+}
+nav ul li .home, .usuario, .cliente, .empleado, .producto, .categoria
+{
+    display: inline-block;
+    color: white;
+    background: #b2b2b2;
+    text-decoration: none;
+    -webkit-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+    font-size: 21px;
+
+}
+
+.home{
+    padding: 10px 16.5px;
+}
+
+.home:hover{
+    background: #777777;
+    padding: 10px 21px;
+
+}
+div
+{
+    font-size: 15px;
+    font-family: Microsoft Yi Baiti;
+    font-weight: normal;
+
+}
+
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 90px;
+    background-color: #777777;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+.tooltip .tooltiptext {
+    top: -1px;
+    left: 110%; 
+}
+.tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 100%; /* To the left of the tooltip */
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent #777777 transparent transparent;
+}
+
+   

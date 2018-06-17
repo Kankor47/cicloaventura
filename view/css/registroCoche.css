@@ -1,0 +1,312 @@
+*{
+    margin: 0;
+    padding-top: 0;
+}
+html {
+
+  -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+}
+body{
+
+    background:#fff;
+
+}
+
+@font-face {
+    font-family: Simplifica;
+    src: url(../webfonts/SIMPLIFICA.ttf);
+}
+
+h1{
+    font-size:45px;
+    font-weight: bold;
+    color: #777777;
+}
+
+p{
+    font-size:15px;
+    font-family: Microsoft Yi Baiti;
+    text-align: center;
+    padding-bottom:10px;
+}
+.titulo_menu{
+    padding-top:30px; 
+    padding-bottom: 30px;
+    width: 100%;
+    margin-bottom: 1px;
+    font-family: Simplifica;
+    text-align: center;
+    background-color: #ededed; ;
+}
+.datos
+{
+
+   margin-top: 30px;
+    margin-left:7%;
+    margin-right:50px;
+    float: left;  
+
+
+}
+ .fecha, .descripcion,.key
+{
+
+    background-color:#fff;
+    border:1px solid #b2b2b2;
+    font-size: 15px;
+    font-family: Microsoft Yi Baiti;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 75%;
+    padding: 12px;
+    resize: vertical;
+
+}
+
+div
+{
+    font-size: 15px;
+    font-family: Microsoft Yi Baiti;
+    font-weight: normal;
+
+}
+
+.ico_tipo,.ico_descripcion,.ico_calendario,.ico_keyid{
+    color:#b2b2b2;
+    font-size: 23px;   
+}
+
+.ico_tipo{
+    padding-right: 7px;
+}
+
+.ico_descripcion
+{
+    padding-right: 12px;
+}
+.ico_calendario
+{
+    padding-right: 15px;
+
+}
+.ico_keyid
+{
+    padding-right: 13px;
+
+}
+
+.button-guardar
+{
+
+    overflow:hidden;
+    margin-top: 5px;
+    margin-left: 41px;
+    padding:12px 105px  ;
+
+
+
+    background-color:#ededed;
+    border:0px solid #ededed;
+    box-shadow: 0px 0px 1px #777777;
+    cursor: pointer;
+    color: #b2b2b2;
+    font-size: 18px;
+    font-family: Microsoft Yi Baiti;
+    font-weight: bold;
+    text-align: center;
+}
+
+.button-guardar:hover
+{
+    box-shadow: 0px 0px 1px #777777;
+    background-color: #b2b2b2;
+    color: white;
+}
+
+
+.ico_borrar
+{
+    color:#ff7585 ;
+    font-size: 20px;
+
+}
+.ico_actualizar
+{
+    color:#1fdbb8 ;
+    font-size: 20px;
+
+}
+
+
+
+nav{ 
+      position: fixed;
+    left: -35px;
+    top: 30%;
+}
+nav ul{
+    list-style: none;
+}
+nav ul li .home, .usuario, .cliente, .empleado, .producto,.categoria
+{
+    display: inline-block;
+    color: white;
+
+    text-decoration: none;
+    -webkit-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+    font-size: 21px;
+
+}
+
+
+.home{
+        background: #6bc4ff;
+    padding: 10px 16.5px;
+}
+.usuario{
+          background: #ff7585;
+    padding: 10px 19px;
+}
+.cliente{
+     background: #7285a6;
+    padding: 10px 15px;
+}
+.empleado{
+
+ background: #b2b2b2;
+    padding: 10px 19px;
+}
+.producto{
+    color: #777777;
+    background: #ededed;
+    padding: 10px 17.7px;
+}
+.categoria{
+    background: #1fdbb8;
+    padding: 10px 15px;
+}
+.categoria:hover
+{
+    background: #777777;
+    padding: 10px 21px;
+
+}
+
+.home:hover
+{
+    background: #777777;
+    padding: 10px 21.5px;
+
+}
+.usuario:hover
+{
+    background: #777777;
+    padding: 10px 24px;
+}
+
+.cliente:hover
+{
+    background: #777777;
+    padding: 10px 20px;
+}
+.empleado:hover
+{
+
+    background: #777777;
+    padding: 10px 24px;
+}
+
+.producto:hover
+{
+    color: white;
+    background: #777777;
+ padding: 10px 22.7px;
+}
+
+
+
+table{ 
+
+
+    text-align: center;
+    font-family: Microsoft Yi Baiti; 
+
+}
+th {
+
+    background: #ededed;
+   
+
+
+}
+
+
+tr:hover td{  
+    background: #ededed; 
+
+}
+
+
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; 
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+     font-family:  Microsoft Yi Baiti; 
+    visibility: hidden;
+    width: 90px;
+    background-color: #777777;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+.tooltip .tooltiptext {
+    top: -1px;
+    left: 110%; 
+}
+.tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 100%; /* To the left of the tooltip */
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent #777777 transparent transparent;
+
+
+
+}
+
+
+   
+ .tipo
+{
+    background-color:#fff;
+    border:1px solid #b2b2b2;
+    font-size: 15px;
+    font-family: Microsoft Yi Baiti;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding:12px 74px  ;
+
+}
