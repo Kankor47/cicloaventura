@@ -7,6 +7,7 @@ require_once '../model/ModelLogin.php';
 require_once '../model/ModelCoches.php';
 require_once '../model/ModelTipo.php';
 require_once '../model/ModelMantenimiento.php';
+require_once '../model/ModelAlquiler.php';
 
 
 session_start();
@@ -17,6 +18,7 @@ $login = new ModelLogin();
 $coches = new ModelCoches();
 $tipo = new ModelTipo();
 $mantenimiento = new ModelMantenimiento();
+$alquiler = new ModelAlquiler();
 $opcion = $_REQUEST['opcion'];
 
 switch ($opcion) {
@@ -306,6 +308,44 @@ switch ($opcion) {
         header('Location: ../view/categoria/index.php');
 
         break;
+    
+    //ALQUILER
+    case "guardar_alquiler":
+
+        $id_cli = $_REQUEST['id_cli'];
+        $id_emp = $_REQUEST['id_emp'];
+        $valor_total = $_REQUEST['valor_total'];
+        $alquiler->crearAlquiler($id_cli,$id_emp,$valor_total);
+        $listaAlquilers = $alquiler->getAlquilers();
+        $_SESSION['lista_alquiler'] = serialize($listaAlquilers);
+        header('Location: ../view/alquiler/index.php');
+        break;
+    case "eliminar_alquiler":
+
+        $id = $_REQUEST['id'];
+        $alquiler->eliminarAlquiler($id);
+        $listaAlquilers = $alquiler->getAlquilers();
+        $_SESSION['lista_alquiler'] = serialize($listaAlquilers);
+        header('Location: ../view/alquiler/index.php');
+        break;
+    case "cargar_alquiler":
+        $id = $_REQUEST['id'];
+        $alqui = $alquiler->getAlquiler($id);
+        $_SESSION['alquiler'] = $alqui;
+        header('Location: ../view/alquiler/cargar.php');
+        break;
+    case "actualizar_alquiler":
+
+        $id_alqui = $_REQUEST['id_alqui'];
+        $id_cli = $_REQUEST['id_cli'];
+        $id_emp = $_REQUEST['id_emp'];
+        $valor_total = $_REQUEST['valor_total'];
+        $alquiler->actualizarAlquiler($id_alqui, $id_cli, $id_emp, $valor_total);
+        $listaAlquilers = $alquiler->getAlquilers();
+        $_SESSION['lista_alquiler'] = serialize($listaAlquilers);
+        header('Location: ../view/alquiler/index.php');
+        break;
+    
     default:
         header('Location: ../view/index.php ');
 }

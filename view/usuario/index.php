@@ -28,10 +28,7 @@ session_start();
 
 
         <nav>
-
             <ul>
-
-
                 <li>
                     <div class="tooltip"> 
                         <a href="../menu/index.php" class="home"> 
@@ -75,15 +72,10 @@ session_start();
                         <span class="tooltiptext">Categorias</span>
                     </div>
                 </li>
-
-
             </ul>
-
         </nav>
 
         <form action="../../controller/controller.php">
-
-
             <section class="datos">
                 <div>Empleado</div>
                 <i class="ico_cedula fas fa-user-tie" aria-hidden="true"></i>
