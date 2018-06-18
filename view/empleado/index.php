@@ -25,6 +25,35 @@ session_start();
                 $('#tablaEmple').DataTable();
             });
         </script>
+        <script type="text/javascript">
+      function validar() {
+        var cad = document.getElementById("ced").value.trim();
+        var total = 0;
+        var longitud = cad.length;
+        var longcheck = longitud - 1;
+
+        if (cad !== "" && longitud === 10){
+          for(i = 0; i < longcheck; i++){
+            if (i%2 === 0) {
+              var aux = cad.charAt(i) * 2;
+              if (aux > 9) aux -= 9;
+              total += aux;
+            } else {
+              total += parseInt(cad.charAt(i)); // parseInt o concatenará en lugar de sumar
+            }
+          }
+
+          total = total % 10 ? 10 - total % 10 : 0;
+
+          if (cad.charAt(longitud-1) == total) {
+            document.getElementById("salida").innerHTML = ("Cedula Válida");
+          }else{
+            document.getElementById("salida").innerHTML = ("Cedula Inválida");
+          }
+        }
+      }
+    </script>
+
     </head>
     <body >
 
@@ -97,7 +126,7 @@ session_start();
             <section class="datos">
                 <div>Cédula</div>
                 <i class="ico_cedula fa fa-id-card" aria-hidden="true"></i>
-                <input type="text" name="cedula" placeholder="Cédula" onkeypress="return soloNumeros(event);" onkeydown="return numeroCaracteres(this, 9)"class="cedula" required/></br>
+                <input type="text" name="cedula" placeholder="Cédula" maxlength="13" onkeypress="return soloNumeros(event);" onkeydown="return numeroCaracteres(this, 10)"class="cedula" id="ced" required/></br>
                 <div>Nombres/Apellidos</div>
                 <i class="ico_user fa fa-user" aria-hidden="true"></i>
                 <input type="text" name="nombres" onkeypress="return soloLetras(event);" placeholder="Nombre" class="nombre" required/></br>
@@ -108,7 +137,7 @@ session_start();
                 <i class="ico_telefono fas fa-mobile-alt" aria-hidden="true"></i>
                 <input type="text" name="telefono" onkeypress="return soloNumeros(event);" placeholder="Teléfono" class="telefono" required/></br></br>
                 <input type="hidden" value="guardar_empleado" name="opcion">
-                <button type="submit" class="button-guardar">
+                <button type="submit" class="button-guardar" onclick="validar()">
                     <i class="ico_guardar far fa-save" aria-hidden="true"></i>
                 </button>
             </section>
