@@ -62,7 +62,6 @@ class ModelTipo {
         $pdo=Database::connect();
         $sql="update tbl_tipo set tip_desc=? where id_tipo=?";
         $consulta=$pdo->prepare($sql);
-        //Ejecutamos la sentencia incluyendo a los parametros:
         $consulta->execute(array($tip_desc, $id_tipo));
         Database::disconnect();
     }
