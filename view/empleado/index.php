@@ -27,7 +27,7 @@ session_start();
         </script>
 
         <script type="text/javascript">
-            nombre.disabled="true";
+            
             function validarced()
             {
                 
