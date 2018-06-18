@@ -5,7 +5,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <?php
-include '../../model/Alquiler.php';
+include_once '../../model/Alquiler.php';
 session_start();
 ?>
 <html>
@@ -67,17 +67,15 @@ session_start();
                 <input type="text" name="id_emp" value="<?php echo $alqui->getId_emp(); ?>"  placeholder="Empleado" class="tipo" required/></br>
                 <div>Valor Total</div>
                 <i class="ico_tipo fas fa-tags" aria-hidden="true"></i>
-                <input type="text" name="valor_total" value="<?php echo $alquii->getValor_total(); ?>"  placeholder="Valor Total" class="tipo" required/></br>
+                <input type="text" name="valor_total" value="<?php echo $alqui->getValor_total(); ?>"  placeholder="Valor Total" class="tipo" required/></br>
+                
                 <input type="hidden" value="actualizar_alquiler" name="opcion">
                 <button type="submit" class="button-guardar">
                     <i class="ico_guardar far fa-save" aria-hidden="true"></i>
                 </button>
             </section>
 
-        </form>
-
-
-    
+        </form> 
     <table data-toggle="table"> 
             <thead>
                 <tr>
@@ -91,10 +89,13 @@ session_start();
             </thead>
             <tbody>
                 <?php
-                include '../../model/Alquiler.php';
+                include_once '../../model/Alquiler.php';
                 if (isset($_SESSION['lista_alquiler'])) {
+                    
                     $registro = unserialize($_SESSION['lista_alquiler']);
+                    
                     foreach ($registro as $dato) {
+                        
                         echo "<tr>";
                         echo "<td>" . $dato->getId_alqui() . "</td>";
                         echo "<td>" . $dato->getId_cli() . "</td>";

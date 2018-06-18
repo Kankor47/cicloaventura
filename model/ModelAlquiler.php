@@ -1,4 +1,5 @@
 <?php
+
 require_once 'Database.php';
 require_once 'Alquiler.php';
 
@@ -15,6 +16,10 @@ class ModelAlquiler {
             $alquiler->setId_alqui($dato['id_alqui']);
             $alquiler->setId_cli($dato['id_cli']);
             $alquiler->setId_emp($dato['id_emp']);
+            $alquiler->setId_coche($dato['id_coche']);
+            $alquiler->setValor($dato['valor']);
+            $alquiler->setTiempo_ini($dato['tiempo_ini']);
+            $alquiler->setTiempo_fin($dato['tiempo_fin']);
             $alquiler->setValor_total($dato['valor_total']);
             array_push($listado, $alquiler);
         }
@@ -33,19 +38,23 @@ class ModelAlquiler {
         $alquiler->setId_alqui($dato['id_alqui']);
         $alquiler->setId_cli($dato['id_cli']);
         $alquiler->setId_emp($dato['id_emp']);
+        $alquiler->setId_coche($dato['id_coche']);
+        $alquiler->setValor($dato['valor']);
+        $alquiler->setTiempo_ini($dato['tiempo_ini']);
+        $alquiler->setTiempo_fin($dato['tiempo_fin']);
         $alquiler->setValor_total($dato['valor_total']);
         Database::disconnect();
         return $alquiler;
     }
 
-    public function crearAlquiler($id_cli,$id_emp,$valor_total) {
+    public function crearAlquiler($id_cli, $id_emp, $valor_total) {
 
         $pdo = Database::connect();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "insert into tbl_alquiler (id_cli, id_emp,valor_total) values(?,?,?)";
         $consulta = $pdo->prepare($sql);
         try {
-            $consulta->execute(array($id_cli,$id_emp,$valor_total));
+            $consulta->execute(array($id_cli, $id_emp, $valor_total));
         } catch (PDOException $e) {
             Database::disconnect();
             throw new Exception($e->getMessage());
@@ -63,14 +72,14 @@ class ModelAlquiler {
         Database::disconnect();
     }
 
-    public function actualizarAlquiler($id_alqui,$id_cli,$id_emp,$valor_total) {
+    public function actualizarAlquiler($id_alqui, $id_cli, $id_emp, $valor_total) {
 
-        
+
         $pdo = Database::connect();
-        $sql = "update tbl_alquiler set id_cli=?,id_emp=?,valor_total=?, where id_alqui=?";
+        $sql = "update tbl_alquiler set id_cli=?,id_emp=?,valor_total=? where id_alqui=?";
         $consulta = $pdo->prepare($sql);
         try {
-            $consulta->execute(array($id_alqui,$id_cli,$id_emp,$valor_total));
+            $consulta->execute(array($id_alqui, $id_cli, $id_emp, $valor_total));
         } catch (PDOException $e) {
             Database::disconnect();
             throw new Exception($e->getMessage());

@@ -41,15 +41,15 @@ session_start();
             <section class="datos">
                 <div>Cliente</div>
                 <i class="ico_cedula fas fa-user-tie" aria-hidden="true"></i>
-<!--                <select>
-                    <?php
+<!--                <select name="id_cli" class="tipo">
+                    //<?php
                     //include '../../model/Cliente.php';
                     //$regis=inserialize($_SESSION['lista_cliente']);
-                    //foreach ($regis as $dato) {
-                      //  $opcion = "<option value=\"" . $dato->getId() . "\">" . $dato->getNombres() . "</option> ";
-                       // echo $opcion;
+                    //foreach ($regis as $dato1) {
+                        //$opcion = "<option value=\"" . $dato1->getId() . "\">" . $dato1->getNombres() . "</option> ";
+                        //echo $opcion;
                     //}
-                    ?>
+                    //?>
                 </select>-->
                 <input type="text" name="id_cli" placeholder="Cliente" class="direccion" required/></br>
                 <div>Empleado</div>
@@ -64,6 +64,11 @@ session_start();
                     }
                     ?>
                 </select></br>
+                <div>Coche</div>
+                <i class="fa-car" aria-hidden="true"></i>
+                <div>Valor</div>
+                <div>Tiempo de Salida</div>
+                <div>Tiempo de Llegada</div>
                 <div>Valor Total</div>
                 <i class="ico_direccion fas fa-map-marker-alt" aria-hidden="true"></i>
                 <input type="text" name="valor_total" placeholder="Valor Total" class="direccion" required/></br>
