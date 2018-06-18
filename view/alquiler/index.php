@@ -17,7 +17,16 @@ session_start();
         <link href="../css/bootstrap-table.css" rel="stylesheet">
         <script type="text/javascript" src="../js/validaciones.js"></script>
         <link rel="stylesheet" type="text/css" href="../css/registroCoche.css">
-        
+        <link rel="stylesheet" href="../css/jquery.dataTables.min.css">
+        <script src="../js/jquery-3.3.1.min.js"></script>
+        <script src="../js/jquery.dataTables.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#tablaAlqui').DataTable();
+            });
+        </script>
+
+
     </head>
     <body >
 
@@ -43,13 +52,13 @@ session_start();
                 <i class="ico_cedula fas fa-user-tie" aria-hidden="true"></i>
 <!--                <select name="id_cli" class="tipo">
                     //<?php
-                    //include '../../model/Cliente.php';
-                    //$regis=inserialize($_SESSION['lista_cliente']);
-                    //foreach ($regis as $dato1) {
-                        //$opcion = "<option value=\"" . $dato1->getId() . "\">" . $dato1->getNombres() . "</option> ";
-                        //echo $opcion;
-                    //}
-                    //?>
+                //include '../../model/Cliente.php';
+                //$regis=inserialize($_SESSION['lista_cliente']);
+                //foreach ($regis as $dato1) {
+                //$opcion = "<option value=\"" . $dato1->getId() . "\">" . $dato1->getNombres() . "</option> ";
+                //echo $opcion;
+                //}
+                //?>
                 </select>-->
                 <input type="text" name="id_cli" placeholder="Cliente" class="direccion" required/></br>
                 <div>Empleado</div>
@@ -78,8 +87,8 @@ session_start();
                 </button>
             </section>
         </form>
-        
-        <table data-toggle="table"> 
+
+        <table data-toggle="table" id="tablaAlqui" class="display"> 
             <thead>
                 <tr>
                     <th>ID</th>

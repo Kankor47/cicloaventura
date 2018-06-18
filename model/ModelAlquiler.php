@@ -16,10 +16,6 @@ class ModelAlquiler {
             $alquiler->setId_alqui($dato['id_alqui']);
             $alquiler->setId_cli($dato['id_cli']);
             $alquiler->setId_emp($dato['id_emp']);
-            $alquiler->setId_coche($dato['id_coche']);
-            $alquiler->setValor($dato['valor']);
-            $alquiler->setTiempo_ini($dato['tiempo_ini']);
-            $alquiler->setTiempo_fin($dato['tiempo_fin']);
             $alquiler->setValor_total($dato['valor_total']);
             array_push($listado, $alquiler);
         }
@@ -38,10 +34,6 @@ class ModelAlquiler {
         $alquiler->setId_alqui($dato['id_alqui']);
         $alquiler->setId_cli($dato['id_cli']);
         $alquiler->setId_emp($dato['id_emp']);
-        $alquiler->setId_coche($dato['id_coche']);
-        $alquiler->setValor($dato['valor']);
-        $alquiler->setTiempo_ini($dato['tiempo_ini']);
-        $alquiler->setTiempo_fin($dato['tiempo_fin']);
         $alquiler->setValor_total($dato['valor_total']);
         Database::disconnect();
         return $alquiler;

@@ -17,6 +17,14 @@ session_start();
         <link href="../css/bootstrap-table.css" rel="stylesheet">
         <script type="text/javascript" src="../js/validaciones.js"></script>
         <link rel="stylesheet" type="text/css" href="../css/registroTipo.css">
+        <link rel="stylesheet" href="../css/jquery.dataTables.min.css">
+        <script src="../js/jquery-3.3.1.min.js"></script>
+        <script src="../js/jquery.dataTables.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#tablaCate').DataTable();
+            });
+        </script>
 
 
 
@@ -100,7 +108,7 @@ session_start();
         </form>
 
 
-        <table data-toggle="table"> 
+        <table data-toggle="table" id="tablaCate" class="display"> 
             <thead>
                 <tr>
                     <th>ID</th>

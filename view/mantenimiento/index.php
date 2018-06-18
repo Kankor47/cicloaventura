@@ -17,6 +17,14 @@ session_start();
         <link href="../css/bootstrap-table.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="../css/mantenimiento.css">
         <script type="text/javascript" src="../js/validaciones.js"></script>
+        <link rel="stylesheet" href="../css/jquery.dataTables.min.css">
+        <script src="../js/jquery-3.3.1.min.js"></script>
+        <script src="../js/jquery.dataTables.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#tablaMante').DataTable();
+            });
+        </script>
     </head>
     <body >
 
@@ -95,7 +103,7 @@ session_start();
 
 
 
-        <table data-toggle="table"> 
+        <table data-toggle="table" id="tablaMante" class="display"> 
             <thead>
                 <tr>
                     <th>ID</th>
