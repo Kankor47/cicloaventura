@@ -115,7 +115,7 @@ session_start();
                 <input type="text" name="descripcion" placeholder="Descripcion" class="descripcion" required/></br>
                 <div>Fecha de adquisición</div>
                 <i class="ico_calendario far fa-calendar-alt" aria-hidden="true"></i>
-                <input type="text" name="fecha" placeholder="dd/mm/aaaa" class="fecha" required/></br></br>
+                <input type="date" name="fecha" placeholder="dd/mm/aaaa" class="fecha" required/></br></br>
 
                 <input type="hidden" value="guardar_coche" name="opcion">
                 <button type="submit" class="button-guardar">

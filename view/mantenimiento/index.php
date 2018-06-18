@@ -84,13 +84,10 @@ session_start();
                 </select></br>
                 <div>Fecha de ingreso</div>
                 <i class="ico_calendario far fa-calendar-alt" aria-hidden="true"></i>
-                <input type="date" max="datetime-local" name="fecha_ingreso" placeholder="dd/mm/aaaa" class="fecha" required/></br>
+                <input type="date" value="<?php echo date("Y-m-d");?> name="fecha_ingreso" placeholder="dd/mm/aaaa" class="fecha" required/></br>
                 <div>Fecha de salida</div>
                 <i class="ico_calendario far fa-calendar-alt" aria-hidden="true"></i>
-                <input type="text" name="fecha_salida" placeholder="dd/mm/aaaa" class="fecha" required/></br></br>
-
-
-
+                <input type="date" name="fecha_salida" placeholder="dd/mm/aaaa" class="fecha" required/></br></br>
 
                 <input type="hidden" value="guardar_mantenimiento" name="opcion">
                 <button type="submit" class="button-guardar">
