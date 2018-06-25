@@ -26,34 +26,42 @@ session_start();
                 $('#tablaEmple').DataTable();
             });
         </script>
+
         <script type="text/javascript">
-      function validar() {
-        var cad = document.getElementById("ced").value.trim();
-        var total = 0;
-        var longitud = cad.length;
-        var longcheck = longitud - 1;
-
-        if (cad !== "" && longitud === 10){
-          for(i = 0; i < longcheck; i++){
-            if (i%2 === 0) {
-              var aux = cad.charAt(i) * 2;
-              if (aux > 9) aux -= 9;
-              total += aux;
-            } else {
-              total += parseInt(cad.charAt(i)); // parseInt o concatenará en lugar de sumar
+            
+            function validarced()
+            {
+                
+                var i;
+                var cedula;
+                var acumulado;
+                cedula = document.form.ced.value;
+                var instancia;
+                acumulado = 0;
+                for (i = 1; i <= 9; i++)
+                {
+                    if (i % 2 != 0)
+                    {
+                        instancia = cedula.substring(i - 1, i) * 2;
+                        if (instancia > 9)
+                            instancia -= 9;
+                    } else
+                        instancia = cedula.substring(i - 1, i);
+                    acumulado += parseInt(instancia);
+                }
+                while (acumulado > 0)
+                    acumulado -= 10;
+                if (cedula.substring(9, 10) != (acumulado * -1))
+                {
+                    ced.style.backgroundColor = '#ff7585';
+                    nombre.disabled="true";
+                    document.form.ced.setfocus();
+                }
+                ced.style.backgroundColor = '#fff';
+                nombre.disabled="false";
             }
-          }
+        </script>
 
-          total = total % 10 ? 10 - total % 10 : 0;
-
-          if (cad.charAt(longitud-1) == total) {
-            document.getElementById("salida").innerHTML = ("Cedula Válida");
-          }else{
-            document.getElementById("salida").innerHTML = ("Cedula Inválida");
-          }
-        }
-      }
-    </script>
 
     </head>
     <body >
@@ -63,14 +71,8 @@ session_start();
             <h1>REGISTRO DE EMPLEADOS</h1>       
         </section>
 
-
-
-
         <nav>
-
             <ul>
-
-
                 <li>
                     <div class="tooltip"> 
                         <a href="../menu/index.php" class="home"> 
@@ -100,37 +102,31 @@ session_start();
                         <span class="tooltiptext">Clientes</span>
                     </div>
                 </li>
-                 <li>
+                <li>
                     <div class="tooltip"> 
-                         <a  href="../coche/index.php" class="producto">
-                             <i class="ico_inicio fas fa-bus" aria-hidden="true"></i></a>
-                    <span class="tooltiptext">Coches</span>
+                        <a  href="../coche/index.php" class="producto">
+                            <i class="ico_inicio fas fa-bus" aria-hidden="true"></i></a>
+                        <span class="tooltiptext">Coches</span>
                     </div>
                 </li>
                 <li>
                     <div class="tooltip"> 
-                      <a  href="../categoria/index.php" class="categoria">
-                          <i class="ico_inicio fas fa-tags" aria-hidden="true"></i></a>
-                    <span class="tooltiptext">Categorias</span>
+                        <a  href="../categoria/index.php" class="categoria">
+                            <i class="ico_inicio fas fa-tags" aria-hidden="true"></i></a>
+                        <span class="tooltiptext">Categorias</span>
                     </div>
                 </li>
-
-
             </ul>
-
         </nav>
 
-        <form action="../../controller/controller.php">
-
-                
-            
+        <form action="../../controller/controller.php" name="form">
             <section class="datos">
                 <div>Cédula</div>
                 <i class="ico_cedula fa fa-id-card" aria-hidden="true"></i>
-                <input type="text" name="cedula" placeholder="Cédula" maxlength="13" onkeypress="return soloNumeros(event);" onkeydown="return numeroCaracteres(this, 10)"class="cedula" id="ced" required/></br>
+                <input type="text" name="cedula" id="ced" onchange="validarced()"  placeholder="Cédula" maxlength="13"  onkeypress="return soloNumeros(event);" onkeydown="return numeroCaracteres(this, 10)"class="cedula" required/></br>
                 <div>Nombres/Apellidos</div>
                 <i class="ico_user fa fa-user" aria-hidden="true"></i>
-                <input type="text" name="nombres" onkeypress="return soloLetras(event);" placeholder="Nombre" class="nombre" required/></br>
+                <input type="text" name="nombres" id="nombre"  onkeypress="return soloLetras(event);" placeholder="Nombre" class="nombre" required/></br>
                 <div>Dirección</div>
                 <i class="ico_direccion fas fa-map-marker-alt" aria-hidden="true"></i>
                 <input type="text" name="direccion" placeholder="Dirección" class="direccion" required/></br>
@@ -138,7 +134,7 @@ session_start();
                 <i class="ico_telefono fas fa-mobile-alt" aria-hidden="true"></i>
                 <input type="text" name="telefono" onkeypress="return soloNumeros(event);" placeholder="Teléfono" class="telefono" required/></br></br>
                 <input type="hidden" value="guardar_empleado" name="opcion">
-                <button type="submit" class="button-guardar" onclick="validar()">
+                <button type="submit" class="button-guardar" name="validar" onclick="validar()">
                     <i class="ico_guardar far fa-save" aria-hidden="true"></i>
                 </button>
             </section>

@@ -1,5 +1,3 @@
-
-
 function ValidarCedula(cedula, boton)
 {
     var cedula = cedula;
@@ -43,11 +41,68 @@ function ValidarCedula(cedula, boton)
     }
 }
 
-
-function numeroCaracteres(campo,limite){
-if(campo.value.length>=limite){
-campo.value=campo.value.substring(0,limite);
+function validarced()
+{
+    var i;
+    var cedula;
+    var acumulado;
+    cedula = document.form.ced.value;
+    var instancia;
+    acumulado = 0;
+    for (i = 1; i <= 9; i++)
+    {
+        if (i % 2 != 0)
+        {
+            instancia = cedula.substring(i - 1, i) * 2;
+            if (instancia > 9)
+                instancia -= 9;
+        } else
+            instancia = cedula.substring(i - 1, i);
+        acumulado += parseInt(instancia);
+    }
+    while (acumulado > 0)
+        acumulado -= 10;
+    if (cedula.substring(9, 10) != (acumulado * -1))
+    {
+        alert("Cedula no valida!!");
+        document.form.ced.setfocus();
+    }
+    alert("Cedula valida !!");
 }
+
+function validar() {
+    var cad = document.getElementById("ced").value.trim();
+    var total = 0;
+    var longitud = cad.length;
+    var longcheck = longitud - 1;
+
+    if (cad !== "" && longitud === 10) {
+        for (i = 0; i < longcheck; i++) {
+            if (i % 2 === 0) {
+                var aux = cad.charAt(i) * 2;
+                if (aux > 9)
+                    aux -= 9;
+                total += aux;
+            } else {
+                total += parseInt(cad.charAt(i)); // parseInt o concatenará en lugar de sumar
+            }
+        }
+
+        total = total % 10 ? 10 - total % 10 : 0;
+
+        if (cad.charAt(longitud - 1) == total) {
+            document.getElementById("salida").innerHTML = ("Cedula Válida");
+        } else {
+            document.getElementById("salida").innerHTML = ("Cedula Inválida");
+        }
+    }
+}
+
+
+function numeroCaracteres(campo, limite) {
+    if (campo.value.length >= limite) {
+        campo.value = campo.value.substring(0, limite);
+    }
 }
 function soloNumeros(e)
 {
@@ -60,20 +115,20 @@ function soloNumeros(e)
 function SoloLetras(e)
 {
     key = e.keyCode || e.which;
-       tecla = String.fromCharCode(key).toLowerCase();
-       letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
-       especiales = "8-37-39-46";
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+    especiales = "8-37-39-46";
 
-       tecla_especial = false
-       for(var i in especiales){
-            if(key == especiales[i]){
-                tecla_especial = true;
-                break;
-            }
+    tecla_especial = false
+    for (var i in especiales) {
+        if (key == especiales[i]) {
+            tecla_especial = true;
+            break;
         }
+    }
 
-        if(letras.indexOf(tecla)==-1 && !tecla_especial){
-            return false;
-        }
+    if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+        return false;
+    }
 }
 
