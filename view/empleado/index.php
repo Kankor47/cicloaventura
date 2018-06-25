@@ -15,11 +15,12 @@ session_start();
         <script src="../js/jquery-2.1.4.js"></script>
         <script src="../js/bootstrap-table.js"></script>
         <link href="../css/bootstrap-table.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="../css/registroEmpleado.css">
         <script type="text/javascript" src="../js/validaciones.js"></script>
         <link rel="stylesheet" href="../css/jquery.dataTables.min.css">
         <script src="../js/jquery-3.3.1.min.js"></script>
         <script src="../js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../css/registroEmpleado.css">
+        
         <script>
             $(document).ready(function () {
                 $('#tablaEmple').DataTable();
@@ -143,7 +144,9 @@ session_start();
             </section>
         </form>
 
-        <table data-toggle="table" id="tablaEmple" class="display"> 
+        
+        <section class="datosTabla">
+        <table  id="tablaEmple" class="display" data-toggle="table"> 
             <thead>
                 <tr>
                     <th>ID</th>
@@ -182,5 +185,6 @@ session_start();
                 ?>
             </tbody>
         </table>
+            </section>
     </body>
 </html>
