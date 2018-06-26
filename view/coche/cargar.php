@@ -13,7 +13,7 @@ session_start();
     <head>
         <meta charset="UTF-8">
         <title>Registro</title>
-       <link rel="stylesheet" type="text/css" href="../css/fontawesome-all.css">
+        <link rel="stylesheet" type="text/css" href="../css/fontawesome-all.css">
         <script src="../js/jquery-2.1.4.js"></script>
         <script src="../js/bootstrap-table.js"></script>
         <link href="../css/bootstrap-table.css" rel="stylesheet">
@@ -39,7 +39,7 @@ session_start();
         </section>
 
 
-            <nav>
+        <nav>
 
             <ul>
 
@@ -94,7 +94,6 @@ session_start();
         </nav>
 
         <?php
-    
         $coh = $_SESSION['coche'];
         ?>
 
@@ -105,11 +104,11 @@ session_start();
                 <div>Id</div>
                 <i class="ico_keyid fas fa-key" aria-hidden="true"></i>
                 <input type="text" name="coche" value="<?php echo $coh->getId_coche(); ?>"placeholder="Tipo de coche" readonly="readonly" class="key" required/></br>
-                 <div>Tipo/Categoria</div>
+                <div>Tipo/Categoria</div>
                 <i class="ico_tipo fas fa-tags" aria-hidden="true"></i>
-               
+
                 <select name="tipo" class="tipo" >
-                    
+
                     <?php
                     include '../../model/Tipo.php';
                     $registro = unserialize($_SESSION['lista_tipo']);
@@ -118,7 +117,7 @@ session_start();
                         echo $opcion;
                     }
                     ?>
-                   
+
                 </select></br> 
                 <div>Descripcion</div>
                 <i class="ico_descripcion fas fa-comment" aria-hidden="true"></i>
@@ -138,44 +137,45 @@ session_start();
 
         <div class="tabla"></div>
 
-        <table data-toggle="table" id="tablaCoche" class="display"> 
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>CATEGORÍA</th>
-                    <th>DESCRIPCIÓN</th>
-                    <th>FECHA DE ADQUISICIÓN</th>
-                    <th>ELIMINAR</th>
-                    <th>ACTUALIZAR</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-               
 
-                if (isset($_SESSION['lista_coche'])) {
+        <section class="datosTabla">
 
-                    $registro = unserialize($_SESSION['lista_coche']);
+            <table data-toggle="table" id="tablaCoche" class="display"> 
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>CATEGORÍA</th>
+                        <th>DESCRIPCIÓN</th>
+                        <th>FECHA DE ADQUISICIÓN</th>
+                        <th>ELIMINAR</th>
+                        <th>ACTUALIZAR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    if (isset($_SESSION['lista_coche'])) {
 
-                    foreach ($registro as $dato) {
-                        echo "<tr>";
-                        echo "<td>" . $dato->getId_coche() . "</td>";
-                        echo "<td>" . $dato->getId_tipo() . "</td>";
-                        echo "<td>" . $dato->getDescripcion_coche() . "</td>";
-                        echo "<td>" . $dato->getFecha_adquisicion() . "</td>";
-                        echo "<td><a href='../../controller/controller.php?opcion=eliminar_coche&id=" . $dato->getId_coche() . "' class=\"eliminar\"><i class=\"ico_borrar far fa-trash-alt\" aria-hidden=\"true\"></i></a></td>";
-                        echo "<td><a href='../../controller/controller.php?opcion=cargar_coche&id=" . $dato->getId_coche() . "' class=\"actualizar\"><i class=\"ico_actualizar fas fa-pencil-alt\" aria-hidden=\"true\"></i></a></td>";
+                        $registro = unserialize($_SESSION['lista_coche']);
 
-                        echo "</tr>";
+                        foreach ($registro as $dato) {
+                            echo "<tr>";
+                            echo "<td>" . $dato->getId_coche() . "</td>";
+                            echo "<td>" . $dato->getId_tipo() . "</td>";
+                            echo "<td>" . $dato->getDescripcion_coche() . "</td>";
+                            echo "<td>" . $dato->getFecha_adquisicion() . "</td>";
+                            echo "<td><a href='../../controller/controller.php?opcion=eliminar_coche&id=" . $dato->getId_coche() . "' class=\"eliminar\"><i class=\"ico_borrar far fa-trash-alt\" aria-hidden=\"true\"></i></a></td>";
+                            echo "<td><a href='../../controller/controller.php?opcion=cargar_coche&id=" . $dato->getId_coche() . "' class=\"actualizar\"><i class=\"ico_actualizar fas fa-pencil-alt\" aria-hidden=\"true\"></i></a></td>";
+
+                            echo "</tr>";
+                        }
+                    } else {
+                        
                     }
-                } else {
-                    
-                }
-                ?>
+                    ?>
 
-            </tbody>
-        </table>
-
+                </tbody>
+            </table>
+        </section>
 
     </body>
 </html>

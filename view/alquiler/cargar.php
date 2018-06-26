@@ -12,7 +12,7 @@ session_start();
     <head>
         <meta charset="UTF-8">
         <title>Registro</title>
-       <link rel="stylesheet" type="text/css" href="../css/fontawesome-all.css">
+        <link rel="stylesheet" type="text/css" href="../css/fontawesome-all.css">
         <script src="../js/jquery-2.1.4.js"></script>
         <script src="../js/bootstrap-table.js"></script>
         <link href="../css/bootstrap-table.css" rel="stylesheet">
@@ -38,7 +38,7 @@ session_start();
         </section>
 
 
-            <nav>
+        <nav>
 
             <ul>
 
@@ -56,7 +56,6 @@ session_start();
         </nav>
 
         <?php
-    
         $alqui = $_SESSION['alquiler'];
         ?>
 
@@ -70,13 +69,13 @@ session_start();
                 <div>Cliente</div>
                 <i class="ico_tipo fas fa-tags" aria-hidden="true"></i>
                 <input type="text" name="id_cli" value="<?php echo $alqui->getId_cli(); ?>"  placeholder="Cliente" class="tipo" required/></br>
-               <div>Empleado</div>
+                <div>Empleado</div>
                 <i class="ico_tipo fas fa-tags" aria-hidden="true"></i>
                 <input type="text" name="id_emp" value="<?php echo $alqui->getId_emp(); ?>"  placeholder="Empleado" class="tipo" required/></br>
                 <div>Valor Total</div>
                 <i class="ico_tipo fas fa-tags" aria-hidden="true"></i>
                 <input type="text" name="valor_total" value="<?php echo $alqui->getValor_total(); ?>"  placeholder="Valor Total" class="tipo" required/></br>
-                
+
                 <input type="hidden" value="actualizar_alquiler" name="opcion">
                 <button type="submit" class="button-guardar">
                     <i class="ico_guardar far fa-save" aria-hidden="true"></i>
@@ -84,44 +83,47 @@ session_start();
             </section>
 
         </form> 
-        <table data-toggle="table" id="tablaAlqui" class="display"> 
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>CLIENTE</th>
-                    <th>EMPLEADO</th>
-                    <th>VALOR TOTAL</th>
-                    <th>ELIMINAR</th>
-                    <th>ACTUALIZAR</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                include_once '../../model/Alquiler.php';
-                if (isset($_SESSION['lista_alquiler'])) {
-                    
-                    $registro = unserialize($_SESSION['lista_alquiler']);
-                    
-                    foreach ($registro as $dato) {
+
+        <section class="datosTabla">
+
+            <table data-toggle="table" id="tablaAlqui" class="display"> 
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>CLIENTE</th>
+                        <th>EMPLEADO</th>
+                        <th>VALOR TOTAL</th>
+                        <th>ELIMINAR</th>
+                        <th>ACTUALIZAR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    include_once '../../model/Alquiler.php';
+                    if (isset($_SESSION['lista_alquiler'])) {
+
+                        $registro = unserialize($_SESSION['lista_alquiler']);
+
+                        foreach ($registro as $dato) {
+
+                            echo "<tr>";
+                            echo "<td>" . $dato->getId_alqui() . "</td>";
+                            echo "<td>" . $dato->getId_cli() . "</td>";
+                            echo "<td>" . $dato->getId_emp() . "</td>";
+                            echo "<td>" . $dato->getValor_total() . "</td>";
+                            echo "<td><a href='../../controller/controller.php?opcion=eliminar_alquiler&id=" . $dato->getId_alqui() . "' class=\"eliminar\"><i class=\"ico_borrar far fa-trash-alt\" aria-hidden=\"true\"></i></a></td>";
+                            echo "<td><a href='../../controller/controller.php?opcion=cargar_alquiler&id=" . $dato->getId_alqui() . "' class=\"actualizar\"><i class=\"ico_actualizar fas fa-pencil-alt\" aria-hidden=\"true\"></i></a></td>";
+
+                            echo "</tr>";
+                        }
+                    } else {
                         
-                        echo "<tr>";
-                        echo "<td>" . $dato->getId_alqui() . "</td>";
-                        echo "<td>" . $dato->getId_cli() . "</td>";
-                        echo "<td>" . $dato->getId_emp() . "</td>";
-                        echo "<td>" . $dato->getValor_total() . "</td>";
-                        echo "<td><a href='../../controller/controller.php?opcion=eliminar_alquiler&id=" . $dato->getId_alqui() . "' class=\"eliminar\"><i class=\"ico_borrar far fa-trash-alt\" aria-hidden=\"true\"></i></a></td>";
-                        echo "<td><a href='../../controller/controller.php?opcion=cargar_alquiler&id=" . $dato->getId_alqui() . "' class=\"actualizar\"><i class=\"ico_actualizar fas fa-pencil-alt\" aria-hidden=\"true\"></i></a></td>";
-
-                        echo "</tr>";
                     }
-                } else {
-                    
-                }
-                ?>
+                    ?>
 
-            </tbody>
-        </table>
-
+                </tbody>
+            </table>
+        </section>
 
     </body>
 </html>

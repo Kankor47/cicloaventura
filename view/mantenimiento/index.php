@@ -99,7 +99,7 @@ session_start();
 
 
 
-
+        <section class="datosTabla"> 
         <table data-toggle="table" id="tablaMante" class="display"> 
             <thead>
                 <tr>
@@ -144,7 +144,7 @@ session_start();
             </tbody>
 
         </table>
-
+</section>
 
 
     </body>

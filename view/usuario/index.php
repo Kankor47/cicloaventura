@@ -118,6 +118,8 @@ session_start();
         </form>
 
 
+        
+        <section class="datosTabla"> 
         <table data-toggle="table" id="tablaUser" class="display"> 
             <thead>
                 <tr>
@@ -161,6 +163,6 @@ session_start();
             </tbody>
         </table>
 
-
+</section>
     </body>
 </html>

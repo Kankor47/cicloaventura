@@ -108,39 +108,40 @@ session_start();
         </form>
 
 
-        <table data-toggle="table" id="tablaCate" class="display"> 
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>CATEGORÍA</th>
-                    <th>ELIMINAR</th>
-                    <th>ACTUALIZAR</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                include '../../model/Tipo.php';
+        <section class="datosTabla">
+            <table data-toggle="table" id="tablaCate" class="display"> 
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>CATEGORÍA</th>
+                        <th>ELIMINAR</th>
+                        <th>ACTUALIZAR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    include '../../model/Tipo.php';
 
-                if (isset($_SESSION['lista_tipo'])) {
+                    if (isset($_SESSION['lista_tipo'])) {
 
-                    $registro = unserialize($_SESSION['lista_tipo']);
+                        $registro = unserialize($_SESSION['lista_tipo']);
 
-                    foreach ($registro as $dato) {
-                        echo "<tr>";
-                        echo "<td>" . $dato->getId_tipo() . "</td>";
-                        echo "<td>" . $dato->getTip_desc() . "</td>";
-                        echo "<td><a href='../../controller/controller.php?opcion=eliminar_tipo&id=" . $dato->getId_tipo() . "' class=\"eliminar\"><i class=\"ico_borrar far fa-trash-alt\" aria-hidden=\"true\"></i></a></td>";
-                        echo "<td><a href='../../controller/controller.php?opcion=cargar_tipo&id=" . $dato->getId_tipo() . "' class=\"actualizar\"><i class=\"ico_actualizar fas fa-pencil-alt\" aria-hidden=\"true\"></i></a></td>";
-                        echo "</tr>";
+                        foreach ($registro as $dato) {
+                            echo "<tr>";
+                            echo "<td>" . $dato->getId_tipo() . "</td>";
+                            echo "<td>" . $dato->getTip_desc() . "</td>";
+                            echo "<td><a href='../../controller/controller.php?opcion=eliminar_tipo&id=" . $dato->getId_tipo() . "' class=\"eliminar\"><i class=\"ico_borrar far fa-trash-alt\" aria-hidden=\"true\"></i></a></td>";
+                            echo "<td><a href='../../controller/controller.php?opcion=cargar_tipo&id=" . $dato->getId_tipo() . "' class=\"actualizar\"><i class=\"ico_actualizar fas fa-pencil-alt\" aria-hidden=\"true\"></i></a></td>";
+                            echo "</tr>";
+                        }
+                    } else {
+                        
                     }
-                } else {
-                    
-                }
-                ?>
+                    ?>
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
 
-
+        </section>
     </body>
 </html>

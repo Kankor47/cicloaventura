@@ -83,40 +83,44 @@ session_start();
             </section>
         </form>
 
-        <table data-toggle="table" id="tablaAlqui" class="display"> 
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>CLIENTE</th>
-                    <th>EMPLEADO</th>
-                    <th>VALOR TOTAL</th>
-                    <th>ELIMINAR</th>
-                    <th>ACTUALIZAR</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                include '../../model/Alquiler.php';
-                if (isset($_SESSION['lista_alquiler'])) {
-                    $registro = unserialize($_SESSION['lista_alquiler']);
-                    foreach ($registro as $dato) {
-                        echo "<tr>";
-                        echo "<td>" . $dato->getId_alqui() . "</td>";
-                        echo "<td>" . $dato->getId_cli() . "</td>";
-                        echo "<td>" . $dato->getId_emp() . "</td>";
-                        echo "<td>" . $dato->getValor_total() . "</td>";
-                        echo "<td><a href='../../controller/controller.php?opcion=eliminar_alquiler&id=" . $dato->getId_alqui() . "' class=\"eliminar\"><i class=\"ico_borrar far fa-trash-alt\" aria-hidden=\"true\"></i></a></td>";
-                        echo "<td><a href='../../controller/controller.php?opcion=cargar_alquiler&id=" . $dato->getId_alqui() . "' class=\"actualizar\"><i class=\"ico_actualizar fas fa-pencil-alt\" aria-hidden=\"true\"></i></a></td>";
+        <section class="datosTabla">
 
-                        echo "</tr>";
+            <table data-toggle="table" id="tablaAlqui" class="display"> 
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>CLIENTE</th>
+                        <th>EMPLEADO</th>
+                        <th>VALOR TOTAL</th>
+                        <th>ELIMINAR</th>
+                        <th>ACTUALIZAR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    include '../../model/Alquiler.php';
+                    if (isset($_SESSION['lista_alquiler'])) {
+                        $registro = unserialize($_SESSION['lista_alquiler']);
+                        foreach ($registro as $dato) {
+                            echo "<tr>";
+                            echo "<td>" . $dato->getId_alqui() . "</td>";
+                            echo "<td>" . $dato->getId_cli() . "</td>";
+                            echo "<td>" . $dato->getId_emp() . "</td>";
+                            echo "<td>" . $dato->getValor_total() . "</td>";
+                            echo "<td><a href='../../controller/controller.php?opcion=eliminar_alquiler&id=" . $dato->getId_alqui() . "' class=\"eliminar\"><i class=\"ico_borrar far fa-trash-alt\" aria-hidden=\"true\"></i></a></td>";
+                            echo "<td><a href='../../controller/controller.php?opcion=cargar_alquiler&id=" . $dato->getId_alqui() . "' class=\"actualizar\"><i class=\"ico_actualizar fas fa-pencil-alt\" aria-hidden=\"true\"></i></a></td>";
+
+                            echo "</tr>";
+                        }
+                    } else {
+                        
                     }
-                } else {
-                    
-                }
-                ?>
+                    ?>
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+
+        </section>
 
 
     </body>

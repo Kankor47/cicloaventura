@@ -37,7 +37,7 @@ session_start();
         </section>
 
 
-           <nav>
+        <nav>
 
             <ul>
 
@@ -71,18 +71,18 @@ session_start();
                         <span class="tooltiptext">Clientes</span>
                     </div>
                 </li>
-                 <li>
+                <li>
                     <div class="tooltip"> 
-                         <a  href="../coche/index.php" class="producto">
-                             <i class="ico_inicio fas fa-bus" aria-hidden="true"></i></a>
-                    <span class="tooltiptext">Coches</span>
+                        <a  href="../coche/index.php" class="producto">
+                            <i class="ico_inicio fas fa-bus" aria-hidden="true"></i></a>
+                        <span class="tooltiptext">Coches</span>
                     </div>
                 </li>
                 <li>
                     <div class="tooltip"> 
-                      <a  href="../categoria/index.php" class="categoria">
-                          <i class="ico_inicio fas fa-tags" aria-hidden="true"></i></a>
-                    <span class="tooltiptext">Categorias</span>
+                        <a  href="../categoria/index.php" class="categoria">
+                            <i class="ico_inicio fas fa-tags" aria-hidden="true"></i></a>
+                        <span class="tooltiptext">Categorias</span>
                     </div>
                 </li>
 
@@ -119,49 +119,51 @@ session_start();
 
         </form>
 
-        <table data-toggle="table" id="tablaCli" class="display"> 
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>CÉDULA</th>
-                    <th>NOMBRE</th>
-                    <th>DIRECCIÓN</th>
-                    <th>TELÉFONO</th>
-                    <th>CORREO ELECTRÓNICO</th>
-                    <th>ELIMINAR</th>
-                    <th>ACTUALIZAR</th>
+        <section class="datosTabla">
 
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                include '../../model/Cliente.php';
+            <table data-toggle="table" id="tablaCli" class="display"> 
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>CÉDULA</th>
+                        <th>NOMBRE</th>
+                        <th>DIRECCIÓN</th>
+                        <th>TELÉFONO</th>
+                        <th>CORREO ELECTRÓNICO</th>
+                        <th>ELIMINAR</th>
+                        <th>ACTUALIZAR</th>
 
-                if (isset($_SESSION['lista_cliente'])) {
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    include '../../model/Cliente.php';
 
-                    $registro = unserialize($_SESSION['lista_cliente']);
+                    if (isset($_SESSION['lista_cliente'])) {
 
-                    foreach ($registro as $dato) {
-                        echo "<tr>";
-                        echo "<td>" . $dato->getId() . "</td>";
-                        echo "<td>" . $dato->getCedula() . "</td>";
-                        echo "<td>" . $dato->getNombres() . "</td>";
-                        echo "<td>" . $dato->getDireccion() . "</td>";
-                        echo "<td>" . $dato->getTelefono() . "</td>";
-                        echo "<td>" . $dato->getCorreo() . "</td>";
-                        echo "<td><a href='../../controller/controller.php?opcion=eliminar_cliente&id=" . $dato->getId() . "' class=\"eliminar\"><i class=\"ico_borrar far fa-trash-alt\" aria-hidden=\"true\"></i></a></td>";
-                        echo "<td><a href='../../controller/controller.php?opcion=cargar_cliente&id=" . $dato->getId() . "' class=\"actualizar\"><i class=\"ico_actualizar fas fa-pencil-alt\" aria-hidden=\"true\"></i></a></td>";
+                        $registro = unserialize($_SESSION['lista_cliente']);
 
-                        echo "</tr>";
+                        foreach ($registro as $dato) {
+                            echo "<tr>";
+                            echo "<td>" . $dato->getId() . "</td>";
+                            echo "<td>" . $dato->getCedula() . "</td>";
+                            echo "<td>" . $dato->getNombres() . "</td>";
+                            echo "<td>" . $dato->getDireccion() . "</td>";
+                            echo "<td>" . $dato->getTelefono() . "</td>";
+                            echo "<td>" . $dato->getCorreo() . "</td>";
+                            echo "<td><a href='../../controller/controller.php?opcion=eliminar_cliente&id=" . $dato->getId() . "' class=\"eliminar\"><i class=\"ico_borrar far fa-trash-alt\" aria-hidden=\"true\"></i></a></td>";
+                            echo "<td><a href='../../controller/controller.php?opcion=cargar_cliente&id=" . $dato->getId() . "' class=\"actualizar\"><i class=\"ico_actualizar fas fa-pencil-alt\" aria-hidden=\"true\"></i></a></td>";
+
+                            echo "</tr>";
+                        }
+                    } else {
+                        
                     }
-                } else {
-                    
-                }
-                ?>
+                    ?>
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
 
-
+        </section>
     </body>
 </html>

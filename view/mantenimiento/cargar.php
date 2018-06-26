@@ -13,7 +13,7 @@ session_start();
     <head>
         <meta charset="UTF-8">
         <title>Registro</title>
-       <link rel="stylesheet" type="text/css" href="../css/fontawesome-all.css">
+        <link rel="stylesheet" type="text/css" href="../css/fontawesome-all.css">
         <script src="../js/jquery-2.1.4.js"></script>
         <script src="../js/bootstrap-table.js"></script>
         <link href="../css/bootstrap-table.css" rel="stylesheet">
@@ -39,7 +39,7 @@ session_start();
         </section>
 
 
-      <nav>
+        <nav>
 
             <ul>
 
@@ -56,7 +56,6 @@ session_start();
         </nav>
 
         <?php
-    
         $man = $_SESSION['mantenimiento'];
         ?>
 
@@ -65,10 +64,10 @@ session_start();
 
             <section class="datos">
 
-                  <div>Id</div>
+                <div>Id</div>
                 <i class="ico_keyid fas fa-key" aria-hidden="true"></i>
                 <input type="text" name="mantenimiento" value="<?php echo $man->getId(); ?>"placeholder="Tipo de coche" readonly="readonly" class="key" required/></br>
-               
+
                 <div>Coche</div>
                 <i class="ico_tipo fas fa-bus" aria-hidden="true"></i>
                 <select name="tipo" class="tipo" >
@@ -101,7 +100,7 @@ session_start();
                 <div>Fecha de salida</div>
                 <i class="ico_calendario far fa-calendar-alt" aria-hidden="true"></i>
                 <input type="text" name="fecha_salida" value="<?php echo $man->getSalida(); ?>" placeholder="dd/mm/aaaa" class="fecha" required/></br></br>
-            
+
                 <input type="hidden" value="actualizar_mantenimiento" name="opcion">
                 <button type="submit" class="button-guardar">
                     <i class="ico_guardar far fa-save" aria-hidden="true"></i>
@@ -111,51 +110,50 @@ session_start();
 
         </form>
 
+        <section class="datosTabla"> 
+            <table data-toggle="table" id="tablaMante" class="display"> 
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>COCHE</th>
+                        <th>CATEGORÍA</th>
+                        <th>DESCRIPCIÓN</th>
+                        <th>ESTADO</th>
+                        <th>FECHA DE INGRESO</th>
+                        <th>FECHA DE SALIDA</th>
+                        <th>ELIMINAR</th>
+                        <th>ACTUALIZAR</th>
 
-        <table data-toggle="table" id="tablaMante" class="display"> 
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>COCHE</th>
-                    <th>CATEGORÍA</th>
-                    <th>DESCRIPCIÓN</th>
-                    <th>ESTADO</th>
-                    <th>FECHA DE INGRESO</th>
-                    <th>FECHA DE SALIDA</th>
-                    <th>ELIMINAR</th>
-                    <th>ACTUALIZAR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    if (isset($_SESSION['lista_mantenimiento'])) {
 
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-             
+                        $registro = unserialize($_SESSION['lista_mantenimiento']);
 
-                if (isset($_SESSION['lista_mantenimiento'])) {
+                        foreach ($registro as $dato) {
+                            echo "<tr>";
+                            echo "<td>" . $dato->getId() . "</td>";
+                            echo "<td>" . $dato->getId_coche() . "</td>";
+                            echo "<td>" . $dato->getId_tipo() . "</td>";
+                            echo "<td>" . $dato->getDano() . "</td>";
+                            echo "<td>" . $dato->getEstado() . "</td>";
+                            echo "<td>" . $dato->getIngreso() . "</td>";
+                            echo "<td>" . $dato->getSalida() . "</td>";
+                            echo "<td><a href='../../controller/controller.php?opcion=eliminar_mantenimiento&id=" . $dato->getId() . "' class=\"eliminar\"><i class=\"ico_borrar far fa-trash-alt\" aria-hidden=\"true\"></i></a></td>";
+                            echo "<td><a href='../../controller/controller.php?opcion=cargar_mantenimiento&id=" . $dato->getId() . "' class=\"actualizar\"><i class=\"ico_actualizar fas fa-pencil-alt\" aria-hidden=\"true\"></i></a></td>";
 
-                    $registro = unserialize($_SESSION['lista_mantenimiento']);
-
-                    foreach ($registro as $dato) {
-                        echo "<tr>";
-                        echo "<td>" . $dato->getId() . "</td>";
-                        echo "<td>" . $dato->getId_coche() . "</td>";
-                        echo "<td>" . $dato->getId_tipo() . "</td>";
-                        echo "<td>" . $dato->getDano() . "</td>";
-                        echo "<td>" . $dato->getEstado() . "</td>";
-                        echo "<td>" . $dato->getIngreso() . "</td>";
-                        echo "<td>" . $dato->getSalida() . "</td>";
-                        echo "<td><a href='../../controller/controller.php?opcion=eliminar_mantenimiento&id=" . $dato->getId() . "' class=\"eliminar\"><i class=\"ico_borrar far fa-trash-alt\" aria-hidden=\"true\"></i></a></td>";
-                        echo "<td><a href='../../controller/controller.php?opcion=cargar_mantenimiento&id=" . $dato->getId() . "' class=\"actualizar\"><i class=\"ico_actualizar fas fa-pencil-alt\" aria-hidden=\"true\"></i></a></td>";
-
-                        echo "</tr>";
+                            echo "</tr>";
+                        }
+                    } else {
+                        
                     }
-                } else {
-                    
-                }
-                ?>
-            </tbody>
+                    ?>
+                </tbody>
 
-        </table>
+            </table>
 
+        </section>
     </body>
 </html>

@@ -20,7 +20,7 @@ session_start();
         <script src="../js/jquery-3.3.1.min.js"></script>
         <script src="../js/jquery.dataTables.min.js"></script>
         <link rel="stylesheet" type="text/css" href="../css/registroEmpleado.css">
-        
+
         <script>
             $(document).ready(function () {
                 $('#tablaEmple').DataTable();
@@ -28,10 +28,10 @@ session_start();
         </script>
 
         <script type="text/javascript">
-            
+
             function validarced()
             {
-                
+
                 var i;
                 var cedula;
                 var acumulado;
@@ -54,11 +54,11 @@ session_start();
                 if (cedula.substring(9, 10) != (acumulado * -1))
                 {
                     ced.style.backgroundColor = '#ff7585';
-                    nombre.disabled="true";
+                    nombre.disabled = "true";
                     document.form.ced.setfocus();
                 }
                 ced.style.backgroundColor = '#fff';
-                nombre.disabled="false";
+                nombre.disabled = "false";
             }
         </script>
 
@@ -140,47 +140,49 @@ session_start();
             </section>
         </form>
 
-        
+
         <section class="datosTabla">
-        <table  id="tablaEmple" class="display" data-toggle="table"> 
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>CÉDULA</th>
-                    <th>NOMBRE</th>
-                    <th>DIRECCIÓN</th>
-                    <th>TELÉFONO</th>
-                    <th>ELIMINAR</th>
-                    <th>ACTUALIZAR</th>
 
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                include '../../model/Empleado.php';
+            <table  id="tablaEmple" class="display" data-toggle="table"> 
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>CÉDULA</th>
+                        <th>NOMBRE</th>
+                        <th>DIRECCIÓN</th>
+                        <th>TELÉFONO</th>
+                        <th>ELIMINAR</th>
+                        <th>ACTUALIZAR</th>
 
-                if (isset($_SESSION['lista_empleado'])) {
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    include '../../model/Empleado.php';
 
-                    $registro = unserialize($_SESSION['lista_empleado']);
+                    if (isset($_SESSION['lista_empleado'])) {
 
-                    foreach ($registro as $dato) {
-                        echo "<tr>";
-                        echo "<td>" . $dato->getId() . "</td>";
-                        echo "<td>" . $dato->getCedula() . "</td>";
-                        echo "<td>" . $dato->getNombres() . "</td>";
-                        echo "<td>" . $dato->getDireccion() . "</td>";
-                        echo "<td>" . $dato->getTelefono() . "</td>";
-                        echo "<td><a href='../../controller/controller.php?opcion=eliminar_empleado&id=" . $dato->getId() . "' class=\"eliminar\"><i class=\"ico_borrar far fa-trash-alt\" aria-hidden=\"true\"></i></a></td>";
-                        echo "<td><a href='../../controller/controller.php?opcion=cargar_empleado&id=" . $dato->getId() . "' class=\"actualizar\"><i class=\"ico_actualizar fas fa-pencil-alt\" aria-hidden=\"true\"></i></a></td>";
+                        $registro = unserialize($_SESSION['lista_empleado']);
 
-                        echo "</tr>";
+                        foreach ($registro as $dato) {
+                            echo "<tr>";
+                            echo "<td>" . $dato->getId() . "</td>";
+                            echo "<td>" . $dato->getCedula() . "</td>";
+                            echo "<td>" . $dato->getNombres() . "</td>";
+                            echo "<td>" . $dato->getDireccion() . "</td>";
+                            echo "<td>" . $dato->getTelefono() . "</td>";
+                            echo "<td><a href='../../controller/controller.php?opcion=eliminar_empleado&id=" . $dato->getId() . "' class=\"eliminar\"><i class=\"ico_borrar far fa-trash-alt\" aria-hidden=\"true\"></i></a></td>";
+                            echo "<td><a href='../../controller/controller.php?opcion=cargar_empleado&id=" . $dato->getId() . "' class=\"actualizar\"><i class=\"ico_actualizar fas fa-pencil-alt\" aria-hidden=\"true\"></i></a></td>";
+
+                            echo "</tr>";
+                        }
+                    } else {
+                        
                     }
-                } else {
-                    
-                }
-                ?>
-            </tbody>
-        </table>
-            </section>
+                    ?>
+                </tbody>
+            </table>
+
+        </section>
     </body>
 </html>

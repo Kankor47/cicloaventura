@@ -13,7 +13,7 @@ session_start();
     <head>
         <meta charset="UTF-8">
         <title>Registro</title>
-       <link rel="stylesheet" type="text/css" href="../css/fontawesome-all.css">
+        <link rel="stylesheet" type="text/css" href="../css/fontawesome-all.css">
         <script src="../js/jquery-2.1.4.js"></script>
         <script src="../js/bootstrap-table.js"></script>
         <link href="../css/bootstrap-table.css" rel="stylesheet">
@@ -39,7 +39,7 @@ session_start();
         </section>
 
 
-            <nav>
+        <nav>
 
             <ul>
 
@@ -94,7 +94,6 @@ session_start();
         </nav>
 
         <?php
-    
         $tip = $_SESSION['categoria'];
         ?>
 
@@ -108,7 +107,7 @@ session_start();
                 <div>Tipo/Categoria</div>
                 <i class="ico_tipo fas fa-tags" aria-hidden="true"></i>
                 <input type="text" name="tipo" value="<?php echo $tip->getTip_desc(); ?>"  placeholder="Tipo de coche" class="tipo" required/></br>
-               
+
                 <input type="hidden" value="actualizar_tipo" name="opcion">
                 <button type="submit" class="button-guardar">
                     <i class="ico_guardar far fa-save" aria-hidden="true"></i>
@@ -117,41 +116,39 @@ session_start();
 
         </form>
 
+        <section class="datosTabla">
 
-    
-        <table data-toggle="table" id="tablaCate" class="display"> 
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>CATEGORÍA</th>
-                    <th>ELIMINAR</th>
-                    <th>ACTUALIZAR</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-    
+            <table data-toggle="table" id="tablaCate" class="display"> 
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>CATEGORÍA</th>
+                        <th>ELIMINAR</th>
+                        <th>ACTUALIZAR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    if (isset($_SESSION['lista_tipo'])) {
 
-                if (isset($_SESSION['lista_tipo'])) {
+                        $registro = unserialize($_SESSION['lista_tipo']);
 
-                    $registro = unserialize($_SESSION['lista_tipo']);
-
-                    foreach ($registro as $dato) {
-                        echo "<tr>";
-                        echo "<td>" . $dato->getId_tipo() . "</td>";
-                        echo "<td>" . $dato->getTip_desc() . "</td>";
-                        echo "<td><a href='../../controller/controller.php?opcion=eliminar_tipo&id=" . $dato->getId_tipo() . "' class=\"eliminar\"><i class=\"ico_borrar far fa-trash-alt\" aria-hidden=\"true\"></i></a></td>";
-                        echo "<td><a href='../../controller/controller.php?opcion=cargar_tipo&id=" . $dato->getId_tipo() . "' class=\"actualizar\"><i class=\"ico_actualizar fas fa-pencil-alt\" aria-hidden=\"true\"></i></a></td>";
-                        echo "</tr>";
+                        foreach ($registro as $dato) {
+                            echo "<tr>";
+                            echo "<td>" . $dato->getId_tipo() . "</td>";
+                            echo "<td>" . $dato->getTip_desc() . "</td>";
+                            echo "<td><a href='../../controller/controller.php?opcion=eliminar_tipo&id=" . $dato->getId_tipo() . "' class=\"eliminar\"><i class=\"ico_borrar far fa-trash-alt\" aria-hidden=\"true\"></i></a></td>";
+                            echo "<td><a href='../../controller/controller.php?opcion=cargar_tipo&id=" . $dato->getId_tipo() . "' class=\"actualizar\"><i class=\"ico_actualizar fas fa-pencil-alt\" aria-hidden=\"true\"></i></a></td>";
+                            echo "</tr>";
+                        }
+                    } else {
+                        
                     }
-                } else {
-                    
-                }
-                ?>
+                    ?>
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
 
-
+        </section>
     </body>
 </html>

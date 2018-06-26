@@ -125,6 +125,7 @@ session_start();
 
         <div class="tabla"></div>
 
+        <section class="datosTabla">
 
         <table data-toggle="table" id="tablaEmple" class="display"> 
             <thead>
@@ -165,7 +166,7 @@ session_start();
 
         </table>
 
-
+</section>
 
     </body>
 </html>
