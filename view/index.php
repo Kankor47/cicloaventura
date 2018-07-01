@@ -16,29 +16,33 @@ and open the template in the editor.
     </head>
     <body >
 
-        <section class="titulo">
-        <h1>CYCLO AVENTURA</h1>
-        <p>TU MEJOR EXPERIENCIA</p>
-        <hr>
 
-        </section>
+       
+           
+            <section class="titulo">
+                <h1>CYCLO AVENTURA</h1>
+                <p>TU MEJOR EXPERIENCIA</p>
 
 
-        <section class="login">
+            </section>
 
             <form action="../controller/controller.php">
 
 
-                <i class="ico_usuario fas fa-user-tie" aria-hidden="true"></i>
-                <input type="text" name="usuario" placeholder="Usuario" class="nombre" required/></br>
-                <i class="ico_password fas fa-unlock-alt" aria-hidden="true"></i>
-                <input type="password" name="contrasena" placeholder="Contraseña" class="password" required/></br>
+                <section class="login">
 
+                    <i class="ico_usuario fas fa-user-tie" aria-hidden="true"></i>
+                    <input type="text" name="usuario" placeholder="Usuario" class="nombre" required/></br>
+                    <i class="ico_password fas fa-unlock-alt" aria-hidden="true"></i>
+                    <input type="password" name="contrasena" placeholder="Contraseña" class="password" required/></br>
+
+                </section>
                 <input type="hidden" value="entrar" name="opcion">
-                <input type="submit" value="INGRESAR" class="button-ingresar"/>
-            </form></br>
+                <button type="submit" class="button-ingresar">
+                    <i class="ico_entrar fas fa-caret-right"></i>
+                </button>
 
-        </section>
+            </form></br>
 
     </body>
 </html>

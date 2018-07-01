@@ -2,11 +2,7 @@
     margin: 0;
     padding-top: 0;
 }
-html {
 
-  -webkit-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
-}
 body{
 
     background:#fff;
@@ -28,6 +24,7 @@ p{
     font-family: Microsoft Yi Baiti;
     text-align: center;
     padding-bottom:10px;
+     color: #ededed;
 }
 .titulo_menu{
     padding-top:30px; 
@@ -41,8 +38,8 @@ p{
 {
  
      margin-top: 30px;
-    margin-left:7%;
-    margin-right:50px;
+    margin-left:10%;
+ 
     float: left;  
 
 
@@ -57,7 +54,7 @@ p{
     text-align: center;
     margin-top: 5px;
     margin-bottom: 5px;
-    width: 75%;
+  
     padding: 12px;
     resize: vertical;
 
@@ -92,7 +89,7 @@ div
 
 .ico_usuarios
 {
-    padding-right: 8px;
+    padding-right: 7px;
 }
 
 .ico_password
@@ -105,8 +102,8 @@ div
 
     overflow:hidden;
     margin-top: 5px;
-    margin-left: 41px;
-    padding:12px 105px  ;
+    margin-left: 43px;
+    padding:12px 106px  ;
     background-color:#ededed;
     border:0px solid #ededed;
     box-shadow: 0px 0px 1px #777777;
@@ -149,99 +146,25 @@ div
     text-align: center;
     margin-top: 5px;
     margin-bottom: 5px;
-    padding:12px 66px  ;
+    padding:12px 67px  ;
 
 }
-   
+    .tipo1
+{
+    background-color:#fff;
+    border:1px solid #b2b2b2;
+    font-size: 15px;
+    font-family: Microsoft Yi Baiti;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding:12px 63.5px  ;
+
+}
  
    
    
-nav{ 
-   position: fixed;
-    left: -35px;
-    top: 30%;
-}
-nav ul{
-    list-style: none;
-}
-nav ul li .home, .usuario, .cliente, .empleado, .producto, .categoria
-{
-    display: inline-block;
-    color: white;
-    
-    text-decoration: none;
-    -webkit-transition: all 500ms ease;
-    -o-transition: all 500ms ease;
-    transition: all 500ms ease;
-    font-size: 21px;
-        
-}
 
-.home{
-      background: #6bc4ff;
-     padding: 10px 16.5px;
-}
-.usuario{
-    
-     color: #777777;
-     background: #ededed;
-     padding: 10px 19px;
-}
-.cliente{
-    background: #7285a6;
-     padding: 10px 15px;
-}
-.empleado{
-   background: #b2b2b2;
-     padding: 10px 19px;
-}
-
-.producto{
-    background: #fbba54;
-    padding: 10px 17.7px;
-}
-.categoria{
-       background: #1fdbb8;
-    padding: 10px 15px;
-}
-.categoria:hover
-{
-    background: #777777;
-    padding: 10px 21px;
-
-}
-
-.producto:hover
-{
-    background: #777777;
-    padding: 10px 22.7px;
-}
-.home:hover
-{
-    background: #777777;
-    padding: 10px 21.5px;
-    
-}
-.usuario:hover
-{
-     color: white;
-     background: #777777;
-    padding: 10px 24px;
-}
-
-.cliente:hover
-{
-     background: #777777;
-    padding: 10px 20px;
-}
-.empleado:hover
-{
-    
-
-   
-    background: #777777;
-    padding: 10px 24px;
-}
 
 
 
@@ -256,7 +179,7 @@ table{
 th {
 
     background: #ededed;
-   
+
 
 
 }
@@ -268,14 +191,14 @@ tr:hover td{
 }
 
 
-
+/*
 .tooltip {
     position: relative;
     display: inline-block;
     border-bottom: 1px dotted black; 
 }
 
-/* Tooltip text */
+ Tooltip text 
 .tooltip .tooltiptext {
      font-family:  Microsoft Yi Baiti; 
     visibility: hidden;
@@ -286,12 +209,12 @@ tr:hover td{
     padding: 5px 0;
     border-radius: 6px;
 
-    /* Position the tooltip text - see examples below! */
+     Position the tooltip text - see examples below! 
     position: absolute;
     z-index: 1;
 }
 
-/* Show the tooltip text when you mouse over the tooltip container */
+ Show the tooltip text when you mouse over the tooltip container 
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
@@ -303,7 +226,7 @@ tr:hover td{
     content: " ";
     position: absolute;
     top: 50%;
-    right: 100%; /* To the left of the tooltip */
+    right: 100%;  To the left of the tooltip 
     margin-top: -5px;
     border-width: 5px;
     border-style: solid;
@@ -312,10 +235,36 @@ tr:hover td{
 
 
 }
-
+*/
 
 
 .datosTabla{
     padding-top: 51px;
     padding-right: 50px;
 }
+
+
+
+#contenedor{ 
+    margin: auto; 
+
+} 
+
+
+#lateral{ 
+    background-color: transparent; 
+    width: 200px; 
+    float:left; 
+
+}  
+
+
+#lateral2{ 
+ 
+    width: 25%;
+
+    padding-right: 0px;
+    float:left; 
+
+
+}  

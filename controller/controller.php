@@ -8,6 +8,7 @@ require_once '../model/ModelCoches.php';
 require_once '../model/ModelTipo.php';
 require_once '../model/ModelMantenimiento.php';
 require_once '../model/ModelAlquiler.php';
+require_once '../model/ModelInventario.php';
 
 
 session_start();
@@ -19,18 +20,34 @@ $coches = new ModelCoches();
 $tipo = new ModelTipo();
 $mantenimiento = new ModelMantenimiento();
 $alquiler = new ModelAlquiler();
+$inventario= new ModelInventario();
 $opcion = $_REQUEST['opcion'];
 
 switch ($opcion) {
 
     case 'entrar':
-        $usuario = $_REQUEST['usuario'];
+        $user = $_REQUEST['usuario'];
         $contrasena = $_REQUEST['contrasena'];
-        $sesion = $login->verificacionUsuario($usuario, $contrasena);
+        $sesion = $login->verificacionUsuario($user, $contrasena);
 
-        if ($sesion->getUsuario() == $usuario && $sesion->getContrasena() == $contrasena) {
+        if ($sesion->getUsuario() == $user && $sesion->getContrasena() == $contrasena) {
+            $listaTipos = $tipo->getTipos();
+            $_SESSION['lista_tipo'] = serialize($listaTipos);
+            $listaCoches = $coches->getCoches();
+            $_SESSION['lista_coche'] = serialize($listaCoches);
+            $listaClientes = $cliente->getClientes();
+            $_SESSION['lista_cliente'] = serialize($listaClientes);
+            $listaUsuario = $usuario->getUsuarios();
+            $_SESSION['lista_usuario'] = serialize($listaUsuario);
+            $listaEmpleados = $empleado->getEmpleados();
+            $_SESSION['lista_empleado'] = serialize($listaEmpleados);
+            $listaMantenimiento = $mantenimiento->getMantenimientos();
+            $_SESSION['lista_mantenimiento'] = serialize($listaMantenimiento);
+             $listaInventario = $inventario->getInventario();
+            $_SESSION['lista_inventario'] = serialize($listaInventario);
+            
+            header('Location: ../view/empleado/index.php');
 
-            header('Location: ../view/menu/index.php');
         } else {
             header('Location: ../view/index.php ');
         }
@@ -50,8 +67,8 @@ switch ($opcion) {
         header('Location: ../view/empleado/index.php');
         break;
     //REPORTES
-    
-      case "reportes":
+
+    case "reportes":
         header('Location: ../view/reportes/index.php');
         break;
     //ALQUILER
@@ -59,7 +76,7 @@ switch ($opcion) {
         header('Location: ../view/alquiler/index.php');
         break;
     //INVENTARIO
-     case "inventario":
+    case "inventario":
         header('Location: ../view/inventario/index.php');
         break;
     //MANTENIMIENTO
@@ -175,13 +192,13 @@ switch ($opcion) {
         $_SESSION['empleado'] = $emp;
         header('Location: ../view/empleado/cargar.php');
         break;
-    
-        case "buscar_empleado":
-        $ced_emp =  $_REQUEST['ced_emp'];
-        $emp=$empleado->buscarEmpleado($ced_emp);
-        $_SESSION['empleado']=$emp;
+
+    case "buscar_empleado":
+        $ced_emp = $_REQUEST['ced_emp'];
+        $emp = $empleado->buscarEmpleado($ced_emp);
+        $_SESSION['empleado'] = $emp;
         header('Location: ../view/empleado/index.php');
-    
+
     case "actualizar_empleado":
 
         $id_empleado = $_REQUEST['id_empleado'];
@@ -308,14 +325,14 @@ switch ($opcion) {
         header('Location: ../view/categoria/index.php');
 
         break;
-    
+
     //ALQUILER
     case "guardar_alquiler":
 
         $id_cli = $_REQUEST['id_cli'];
         $id_emp = $_REQUEST['id_emp'];
         $valor_total = $_REQUEST['valor_total'];
-        $alquiler->crearAlquiler($id_cli,$id_emp,$valor_total);
+        $alquiler->crearAlquiler($id_cli, $id_emp, $valor_total);
         $listaAlquilers = $alquiler->getAlquilers();
         $_SESSION['lista_alquiler'] = serialize($listaAlquilers);
         header('Location: ../view/alquiler/index.php');
@@ -345,7 +362,7 @@ switch ($opcion) {
         $_SESSION['lista_alquiler'] = serialize($listaAlquilers);
         header('Location: ../view/alquiler/index.php');
         break;
-    
+
     default:
         header('Location: ../view/index.php ');
 }

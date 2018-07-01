@@ -4,7 +4,8 @@
 }
 body{
 
-    background:#ededed;
+    background:#34383d;
+
 }
 @font-face {
     font-family: Simplifica;
@@ -14,17 +15,18 @@ body{
 h1{
     font-size:45px;
     font-weight: bold;
-    color: #777777;
+    color: #6eaf71;
 }
 p{
-    font-size:15px;
+    font-size:12px;
     font-family: Microsoft Yi Baiti;
     text-align: center;
+    color: #b2b2b2;
 
 }
 .titulo
 {
-    margin-top: 75px;
+    margin-top: 180px;
     margin-bottom: 1px;
     font-family: Simplifica;
     text-align: center;
@@ -42,26 +44,28 @@ hr
 
 .login
 {
-    background: #fff ;
-    max-width: 350px;
-    margin:5px auto;
-    padding: 65px 25px 60px 25px;
-    text-align: center;
-    font-size: 15px;
+   
+    position:absolute;
+    top: 37%;
+    left: 41%;
+    z-index:0; 
+    font-size: 18px;
 
 }
 
 .nombre, .password {
 
-    background-color:#fff;
-    border:1px solid #b2b2b2;
+    background-color:#1c1e21;
+    border:1px solid #1c1e21;
     font-size: 15px;
     font-family: Microsoft Yi Baiti;
     text-align: center;
-    margin:5px 0 5px;
-    width: 68%;
+    margin:1px 0 1px;
+    width: 69%;
     padding: 12px;
     resize: vertical;
+    color: #b2b2b2;
+           border-radius: 5px;
 
 
 }
@@ -70,38 +74,67 @@ hr
 .button-ingresar
 {
 
-    overflow:hidden;
-    margin-top: 5px;
-    margin-left: 33px;
-  
-    width: 77%;
-    padding: 12px;
-    resize: vertical;
-
     
-    
-    background-color:#b2b2b2;
-    border:1px solid #b2b2b2;
-    box-shadow: 0px 0px 1px #777777;
-    cursor: pointer;
-    color:white;
-    font-size: 18px;
-    font-family: Microsoft Yi Baiti;
-    font-weight: bold;
+    position: absolute;
+    top: 39.5%;
+    left: 55%;
+       
+    z-index:1;
+    width:50px;
+    height:50px;
+    background-color:#1c1e21;
+ 
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    border: 3px solid #34383d;
     text-align: center;
+
 }
 
-.button-ingresar:hover
+.button-ingresar:hover .ico_entrar
 {
-    box-shadow: 0px 0px 1px white;
+    color: #6eaf71;
+  
 
+}
+
+.button-ingresar:hover 
+{
+  
+     box-shadow: 0px 0px 1px #777777;
 
 }
 
 .ico_usuario, .ico_password
 {
-    color:#b2b2b2;
+     color: #777777;
     font-size: 23px;
     padding-right: 10px;
 
+ 
 }
+
+.ico_entrar{
+   color: #777777;
+     font-size: 30px;
+     padding-left: 3px;
+}
+
+
+::-webkit-input-placeholder { /* Safari y Chrome */
+    color: #b2b2b2;
+}
+
+:-moz-placeholder { /* Firefox hasta v18 */
+    color: #b2b2b2;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+    color: #b2b2b2;  
+}
+
+:-ms-input-placeholder {  /* IE 10+´*/
+    color: #b2b2b2;  
+}
+

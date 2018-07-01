@@ -20,6 +20,7 @@ session_start();
         <script src="../js/jquery-3.3.1.min.js"></script>
         <script src="../js/jquery.dataTables.min.js"></script>
         <link rel="stylesheet" type="text/css" href="../css/registroEmpleado.css">
+        <link rel="stylesheet" type="text/css" href="../css/menuToggle.css">
 
         <script>
             $(document).ready(function () {
@@ -27,162 +28,178 @@ session_start();
             });
         </script>
 
-        <script type="text/javascript">
-
-            function validarced()
-            {
-
-                var i;
-                var cedula;
-                var acumulado;
-                cedula = document.form.ced.value;
-                var instancia;
-                acumulado = 0;
-                for (i = 1; i <= 9; i++)
-                {
-                    if (i % 2 != 0)
-                    {
-                        instancia = cedula.substring(i - 1, i) * 2;
-                        if (instancia > 9)
-                            instancia -= 9;
-                    } else
-                        instancia = cedula.substring(i - 1, i);
-                    acumulado += parseInt(instancia);
-                }
-                while (acumulado > 0)
-                    acumulado -= 10;
-                if (cedula.substring(9, 10) != (acumulado * -1))
-                {
-                    ced.style.backgroundColor = '#ff7585';
-                    nombre.disabled = "true";
-                    document.form.ced.setfocus();
-                }
-                ced.style.backgroundColor = '#fff';
-                nombre.disabled = "false";
-            }
-        </script>
 
 
     </head>
-    <body >
 
-        <section class="titulo_menu">
-            <p>CYCLO AVENTURA</p>
-            <h1>REGISTRO DE EMPLEADOS</h1>       
-        </section>
+    <body onload="openSideMenu()">
 
-        <nav>
-            <ul>
-                <li>
-                    <div class="tooltip"> 
-                        <a href="../menu/index.php" class="home"> 
-                            <i class="ico_inicio fa fa-home" aria-hidden="true"></i></a>
-                        <span class="tooltiptext">Menú</span>
+        <div id="contenedor"> 
+
+            <div id="cuerpo"> 
+                <div id="lateral">
+
+
+                    <nav class="navbar">
+                        <span class="open-slide">
+                            <a href="#" onclick="openSideMenu()" >
+                                <svg width="30" height="30">
+                                <path d="M0,2 20,2" stroke="#777777" stroke-width="2"/>
+                                <path d="M0,6 20,6" stroke="#777777" stroke-width="2"/>
+                                <path d="M0,10 20,10" stroke="#777777" stroke-width="2"/>
+                            </a>
+                        </span>
+
+
+                    </nav>
+                    <div id="side-menu" class="side-nav">
+                        <a href="#" class="btn_close" onclick="closeSideMenu()">  
+                            <svg width="30" height="12">
+                            <path d="M0,2 20,2" stroke="#fff" stroke-width="2"/>
+                            <path d="M0,6 20,6" stroke="#fff" stroke-width="2"/>
+                            <path d="M0,10 20,10" stroke="#fff" stroke-width="2"/>
+                        </a>
+
+                        <a href="#" > <i class="fa fa-home" aria-hidden="true"></i> Inicio</a>
+
+                        <a href="../empleado/index.php" > <i class="fas fa-clipboard-check"></i> Registros</a>
+                        <li>
+                            <ul><a href="../empleado/index.php" ><i class="ico_inicio fas fa-user-tie" aria-hidden="true"></i> Empleados</a></ul>
+                            <ul><a href="../usuario/index.php" ><i class="ico_inicio fa fa-user" aria-hidden="true"></i> Usuarios</a></ul>
+                            <ul><a href="../cliente/index.php" ><i class="ico_inicio fas fa-user-tag" aria-hidden="true"></i> Clientes</a></ul>
+                            <ul><a href="../coche/index.php" ><i class="ico_inicio fas fa-bus" aria-hidden="true"></i> Coches</a></ul>
+                            <ul><a href="../categoria/index.php" ><i class="ico_inicio fas fa-tags" aria-hidden="true"></i> Categorias</a></ul>
+                        </li>
+                        <a href="../alquiler/index.php"><i class="fas fa-stopwatch" aria-hidden="true"></i> Alquiler</a>
+                        <a href="../inventario/index.php"><i class="fas fa-clipboard-list" aria-hidden="true"></i> Inventario</a>
+                        <a href="../mantenimiento/index.php"><i class="fas fa-toolbox" aria-hidden="true"></i> Mantenimiento</a>
+                        <a href="../reportes/index.php"><i class=" fas fa-chart-line" aria-hidden="true"></i> Reportes</a>
                     </div>
-                </li>
-                <li>
-                    <div class="tooltip"> 
-                        <a   href="../empleado/index.php" class="empleado">
-                            <i class="ico_inicio fas fa-user-tie" aria-hidden="true"></i></a>
-                        <span class="tooltiptext">Empleados</span>
-                    </div>
-                </li>
 
-                <li>
-                    <div class="tooltip"> 
-                        <a   href="../usuario/index.php" class="usuario"> 
-                            <i class="ico_inicio fa fa-user" aria-hidden="true"></i></a>
-                        <span class="tooltiptext">Usuarios</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="tooltip"> 
-                        <a  href="../cliente/index.php" class="cliente">
-                            <i class="ico_inicio fas fa-user-tag" aria-hidden="true"></i></a>
-                        <span class="tooltiptext">Clientes</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="tooltip"> 
-                        <a  href="../coche/index.php" class="producto">
-                            <i class="ico_inicio fas fa-bus" aria-hidden="true"></i></a>
-                        <span class="tooltiptext">Coches</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="tooltip"> 
-                        <a  href="../categoria/index.php" class="categoria">
-                            <i class="ico_inicio fas fa-tags" aria-hidden="true"></i></a>
-                        <span class="tooltiptext">Categorias</span>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-
-        <form action="../../controller/controller.php" name="form">
-            <section class="datos">
-                <div>Cédula</div>
-                <i class="ico_cedula fa fa-id-card" aria-hidden="true"></i>
-                <input type="text" name="cedula" id="ced" onchange="validarced()"  placeholder="Cédula" maxlength="13"  onkeypress="return soloNumeros(event);" onkeydown="return numeroCaracteres(this, 10)"class="cedula" required/></br>
-                <div>Nombres/Apellidos</div>
-                <i class="ico_user fa fa-user" aria-hidden="true"></i>
-                <input type="text" name="nombres" id="nombre"  onkeypress="return soloLetras(event);" placeholder="Nombre" class="nombre" required/></br>
-                <div>Dirección</div>
-                <i class="ico_direccion fas fa-map-marker-alt" aria-hidden="true"></i>
-                <input type="text" name="direccion" placeholder="Dirección" class="direccion" required/></br>
-                <div>Teléfono</div>
-                <i class="ico_telefono fas fa-mobile-alt" aria-hidden="true"></i>
-                <input type="text" name="telefono" onkeypress="return soloNumeros(event);" placeholder="Teléfono" class="telefono" required/></br></br>
-                <input type="hidden" value="guardar_empleado" name="opcion">
-                <button type="submit" class="button-guardar" name="validar" onclick="validar()">
-                    <i class="ico_guardar far fa-save" aria-hidden="true"></i>
-                </button>
-            </section>
-        </form>
-
-
-        <section class="datosTabla">
-
-            <table  id="tablaEmple" class="display" data-toggle="table"> 
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>CÉDULA</th>
-                        <th>NOMBRE</th>
-                        <th>DIRECCIÓN</th>
-                        <th>TELÉFONO</th>
-                        <th>ELIMINAR</th>
-                        <th>ACTUALIZAR</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    include '../../model/Empleado.php';
-
-                    if (isset($_SESSION['lista_empleado'])) {
-
-                        $registro = unserialize($_SESSION['lista_empleado']);
-
-                        foreach ($registro as $dato) {
-                            echo "<tr>";
-                            echo "<td>" . $dato->getId() . "</td>";
-                            echo "<td>" . $dato->getCedula() . "</td>";
-                            echo "<td>" . $dato->getNombres() . "</td>";
-                            echo "<td>" . $dato->getDireccion() . "</td>";
-                            echo "<td>" . $dato->getTelefono() . "</td>";
-                            echo "<td><a href='../../controller/controller.php?opcion=eliminar_empleado&id=" . $dato->getId() . "' class=\"eliminar\"><i class=\"ico_borrar far fa-trash-alt\" aria-hidden=\"true\"></i></a></td>";
-                            echo "<td><a href='../../controller/controller.php?opcion=cargar_empleado&id=" . $dato->getId() . "' class=\"actualizar\"><i class=\"ico_actualizar fas fa-pencil-alt\" aria-hidden=\"true\"></i></a></td>";
-
-                            echo "</tr>";
+                    <script>
+                        function openSideMenu()
+                        {
+                            document.getElementById('side-menu').style.width = '200px';
+                            document.getElementById('principal').style.marginLeft = '200px';
                         }
-                    } else {
-                        
-                    }
-                    ?>
-                </tbody>
-            </table>
+                        function closeSideMenu()
+                        {
+                            document.getElementById('side-menu').style.width = '0px';
+                            document.getElementById('principal').style.marginLeft = '0px';
+                        }
+                    </script>
 
-        </section>
+                </div>
+                <div id="principal"> 
+
+                    <section class="titulo_menu">
+                        <p>REGISTRO DE EMPLEADOS</p>
+                        <h1>REGISTRO DE EMPLEADOS</h1>       
+                    </section>
+
+                    <div id="contenedor">
+                        <div id="lateral2">
+                            <form action="../../controller/controller.php" name="form">
+                                <section class="datos">
+                                    <div>Cédula</div>
+                                    <i class="ico_cedula fa fa-id-card" aria-hidden="true"></i><input type="text" 
+                                                                                                      name="cedula" 
+                                                                                                      id="ced"
+                                                                                                      placeholder="Cédula"  
+                                                                                                      onkeypress="return soloNumeros(event);" 
+                                                                                                      oninput="validarced();" 
+                                                                                                      maxlength="10"
+                                                                                                      class="cedula"
+                                                                                                      required/></br>
+                                    <div>Nombres/Apellidos</div>
+                                    <i class="ico_user fa fa-user" aria-hidden="true"></i>
+                                    <input type="text" 
+                                           name="nombres"
+                                           id="nombre"  
+                                           oninput="soloLetras(event);" 
+                                           placeholder="Nombre" 
+                                           class="nombre" 
+                                           required 
+                                           disabled
+                                           /></br>
+                                    <div>Dirección</div>
+                                    <i class="ico_direccion fas fa-map-marker-alt" aria-hidden="true"></i>
+                                    <input type="text" 
+                                           name="direccion" 
+                                           placeholder="Dirección" 
+                                           class="direccion" 
+                                           id="direccion"  
+                                           required
+                                           disabled
+                                           /></br>
+                                    <div>Teléfono</div>
+                                    <i class="ico_telefono fas fa-mobile-alt" aria-hidden="true"></i>
+                                    <input type="text" 
+                                           name="telefono" 
+                                           onkeypress="return soloNumeros(event);" 
+                                           placeholder="Teléfono" 
+                                           class="telefono" 
+                                           id="telefono"  
+                                           required
+                                           disabled
+                                           /></br></br>
+
+                                    <input type="hidden" value="guardar_empleado" name="opcion">
+                                    <button type="submit" class="button-guardar" name="validar" disabled id="guardar">
+                                        <i class="ico_guardar far fa-save" aria-hidden="true"></i>
+                                    </button>
+                                </section>
+                            </form>
+
+                        </div>
+                        <div id="principal2">
+                            <section class="datosTabla">
+
+                                <table  id="tablaEmple" class="display" data-toggle="table"> 
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>CÉDULA</th>
+                                            <th>NOMBRE</th>
+                                            <th>DIRECCIÓN</th>
+                                            <th>TELÉFONO</th>
+                                            <th>ACTUALIZAR</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        include '../../model/Empleado.php';
+
+                                        if (isset($_SESSION['lista_empleado'])) {
+
+                                            $registro = unserialize($_SESSION['lista_empleado']);
+
+                                            foreach ($registro as $dato) {
+                                                echo "<tr>";
+                                                echo "<td>" . $dato->getId() . "</td>";
+                                                echo "<td>" . $dato->getCedula() . "</td>";
+                                                echo "<td>" . $dato->getNombres() . "</td>";
+                                                echo "<td>" . $dato->getDireccion() . "</td>";
+                                                echo "<td>" . $dato->getTelefono() . "</td>";
+                                                echo "<td><a href='../../controller/controller.php?opcion=cargar_empleado&id=" . $dato->getId() . "' class=\"actualizar\"><i class=\"ico_actualizar fas fa-pencil-alt\" aria-hidden=\"true\"></i></a></td>";
+
+                                                echo "</tr>";
+                                            }
+                                        } else {
+                                            
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+
+                            </section>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </body>
+
 </html>

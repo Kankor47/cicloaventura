@@ -2,11 +2,7 @@
     margin: 0;
     padding-top: 0;
 }
-html {
 
-  -webkit-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
-}
 body{
 
     background:#fff;
@@ -29,6 +25,7 @@ p{
     font-family: Microsoft Yi Baiti;
     text-align: center;
     padding-bottom:10px;
+      color: #ededed;
 }
 .titulo_menu{
     padding-top:30px; 
@@ -42,14 +39,14 @@ p{
 .datos
 {
 
-   margin-top: 30px;
-    margin-left:7%;
-    margin-right:50px;
+     margin-top: 30px;
+    margin-left:10%;
     float: left;  
 
 
+
 }
- .fecha, .descripcion,.key
+ .fecha, .descripcion,.key,.fecha2
 {
 
     background-color:#fff;
@@ -59,10 +56,14 @@ p{
     text-align: center;
     margin-top: 5px;
     margin-bottom: 5px;
-    width: 75%;
+   
     padding: 12px;
     resize: vertical;
 
+}
+
+.fecha{
+     padding: 12px 62px;
 }
 
 div
@@ -102,8 +103,8 @@ div
 
     overflow:hidden;
     margin-top: 5px;
-    margin-left: 41px;
-    padding:12px 105px  ;
+    margin-left: 42px;
+    padding:12px 106px  ;
 
 
 
@@ -141,91 +142,6 @@ div
 
 
 
-nav{ 
-      position: fixed;
-    left: -35px;
-    top: 30%;
-}
-nav ul{
-    list-style: none;
-}
-nav ul li .home, .usuario, .cliente, .empleado, .producto,.categoria
-{
-    display: inline-block;
-    color: white;
-
-    text-decoration: none;
-    -webkit-transition: all 500ms ease;
-    -o-transition: all 500ms ease;
-    transition: all 500ms ease;
-    font-size: 21px;
-
-}
-
-
-.home{
-        background: #6bc4ff;
-    padding: 10px 16.5px;
-}
-.usuario{
-          background: #ff7585;
-    padding: 10px 19px;
-}
-.cliente{
-     background: #7285a6;
-    padding: 10px 15px;
-}
-.empleado{
-
- background: #b2b2b2;
-    padding: 10px 19px;
-}
-.producto{
-    color: #777777;
-    background: #ededed;
-    padding: 10px 17.7px;
-}
-.categoria{
-    background: #1fdbb8;
-    padding: 10px 15px;
-}
-.categoria:hover
-{
-    background: #777777;
-    padding: 10px 21px;
-
-}
-
-.home:hover
-{
-    background: #777777;
-    padding: 10px 21.5px;
-
-}
-.usuario:hover
-{
-    background: #777777;
-    padding: 10px 24px;
-}
-
-.cliente:hover
-{
-    background: #777777;
-    padding: 10px 20px;
-}
-.empleado:hover
-{
-
-    background: #777777;
-    padding: 10px 24px;
-}
-
-.producto:hover
-{
-    color: white;
-    background: #777777;
- padding: 10px 22.7px;
-}
 
 
 
@@ -252,49 +168,7 @@ tr:hover td{
 
 
 
-.tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black; 
-}
 
-/* Tooltip text */
-.tooltip .tooltiptext {
-     font-family:  Microsoft Yi Baiti; 
-    visibility: hidden;
-    width: 90px;
-    background-color: #777777;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-
-    /* Position the tooltip text - see examples below! */
-    position: absolute;
-    z-index: 1;
-}
-
-/* Show the tooltip text when you mouse over the tooltip container */
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-}
-.tooltip .tooltiptext {
-    top: -1px;
-    left: 110%; 
-}
-.tooltip .tooltiptext::after {
-    content: " ";
-    position: absolute;
-    top: 50%;
-    right: 100%; /* To the left of the tooltip */
-    margin-top: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent #777777 transparent transparent;
-
-
-
-}
 
 
    
@@ -307,7 +181,7 @@ tr:hover td{
     text-align: center;
     margin-top: 5px;
     margin-bottom: 5px;
-    padding:12px 74px  ;
+    padding:12px 56px  ;
 
 }
 
@@ -316,3 +190,28 @@ tr:hover td{
     padding-top: 51px;
     padding-right: 50px;
 }
+
+
+#contenedor{ 
+    margin: auto; 
+
+} 
+
+
+#lateral{ 
+    background-color: transparent; 
+    width: 200px; 
+    float:left; 
+
+}  
+
+
+#lateral2{ 
+
+    width: 25%;
+
+    padding-right: 0px;
+    float:left; 
+
+
+}  
