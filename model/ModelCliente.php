@@ -24,6 +24,23 @@ class ModelCliente {
         Database::disconnect();
         return $listado;
     }
+    
+    public function getCliente_ced($cedula) {
+
+        $pdo = Database::connect();
+        $sql = "select * from tbl_cliente where ced_cli=?";
+        $consulta = $pdo->prepare($sql);
+        $consulta->execute(array($id));
+        $dato = $consulta->fetch(PDO::FETCH_ASSOC);
+        $cliente = new Cliente();
+        $cliente->setCedula($dato['ced_cli']);
+        $cliente->setNombres($dato['nom_cli']);
+        $cliente->setDireccion($dato['dic_cli']);
+        $cliente->setTelefono($dato['tel_cli']);
+        $cliente->setCorreo($dato['email_cli']);
+        Database::disconnect();
+        return $cliente;
+    }
 
     public function getCliente($id) {
 

@@ -251,6 +251,12 @@ switch ($opcion) {
         $_SESSION['lista_cliente'] = serialize($listaClientes);
         header('Location: ../view/cliente/index.php');
         break;
+    case "cargar_cliente_cedula":
+        $ced_cli = $_REQUEST['ced_cli'];
+        $cli = $cliente->getCliente_ced($ced_cli);
+        $_SESSION['cliente'] = $cli;
+        header('Location: ../view/alquiler/index.php');
+        break;
 
     //COCHE
     case "guardar_coche":
@@ -325,7 +331,6 @@ switch ($opcion) {
 
     //ALQUILER
     case "guardar_alquiler":
-
         $id_cli = $_REQUEST['id_cli'];
         $id_emp = $_REQUEST['id_emp'];
         $valor_total = $_REQUEST['valor_total'];
@@ -360,6 +365,46 @@ switch ($opcion) {
         header('Location: ../view/alquiler/index.php');
         break;
 
+    //DETALLE AQUILER
+    case "guardar_detalle":
+        $id_coche = $_REQUEST['id_coche'];
+        $id_alqui = $_REQUEST['id_alqui'];
+        $valor = $_REQUEST['valor'];
+        $tiempo_ini = $_REQUEST['tiempo_ini'];
+        $tiempo_fin = $_REQUEST['tiempo_fin'];
+        $detalle->crearDeta_alqui($id_coche, $id_alqui, $valor, $tiempo_ini,$tiempo_fin);
+        $listadetalles = $detalle->getDeta_alquis();
+        $_SESSION['lista_detalle'] = serialize($listadetalles);
+        header('Location: ../view/alquiler/index.php');
+        break;
+    case "eliminar_detalle":
+
+        $id = $_REQUEST['id'];
+        $detalle->eliminarDeta_alqui($id);
+        $listadetalles = $detalle->getDeta_alquis();
+        $_SESSION['lista_detalle'] = serialize($listadetalles);
+        header('Location: ../view/alquiler/index.php');
+        break;
+    case "cargar_detalle":
+        $id = $_REQUEST['id'];
+        $deta = $detalle->getDeta_alqui($id);
+        $_SESSION['detalle'] = $deta;
+        header('Location: ../view/alquiler/cargar.php');
+        break;
+    case "actualizar_detalle":
+
+        $id_deta_alqui = $_REQUEST['id_deta_alqui'];
+        $id_coche = $_REQUEST['id_coche'];
+        $id_alqui = $_REQUEST['id_alqui'];
+        $valor = $_REQUEST['valor'];
+        $tiempo_ini = $_REQUEST['tiempo_ini'];
+        $tiempo_fin = $_REQUEST['tiempo_fin'];
+        $alquiler->actualizarAlquiler($id_deta_alqui, $id_coche, $id_alqui, $valor,$tiempo_ini,$tiempo_fin);
+        $listadetalles = $detalle->getDeta_alquis();
+        $_SESSION['lista_detalle'] = serialize($listadetalles);
+        header('Location: ../view/alquiler/index.php');
+        break;
+    
     default:
         header('Location: ../view/index.php ');
 }

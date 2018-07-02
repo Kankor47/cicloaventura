@@ -5,6 +5,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <?php
+include_once '../../model/Cliente.php';
 session_start();
 ?>
 <html>
@@ -94,24 +95,50 @@ session_start();
                         <h1>ALQUILER</h1>       
                     </section>
 
+
                     <div id="contenedor">
                         <div id="lateral2">
+
+                            <?php
+                            $cli = $_SESSION['cliente'];
+                            ?>
 
                             <form action="../../controller/controller.php">
                                 <section class="datos">
                                     <div>Cliente</div>
-                                    <i class="ico_cedula fas fa-user-tie" aria-hidden="true"></i>
-                                    <select name="id_cli" class="tipo">
-                                        <?php
-                                        include '../../model/Cliente.php';
-                                        $registro = unserialize($_SESSION['lista_cliente']);
-                                        foreach ($registro as $dato) {
-                                            $opcion = "<option value=\"" . $dato->getId() . "\">" . $dato->getNombres() . "</option> ";
-                                            echo $opcion;
-                                        }
-                                        ?>
-                                    </select>
-                                    <input type="text" name="id_cli" placeholder="Cliente" class="direccion" required/></br>
+                                    <i class="ico_cedula fa fa-id-card" aria-hidden="true"></i>
+<!--                                    <select name="id_cli" class="tipo">
+                                        //<?php
+//                                        include '../../model/Cliente.php';
+//                                        $registro = unserialize($_SESSION['lista_cliente']);
+//                                        foreach ($registro as $dato) {
+//                                            $opcion = "<option value=\"" . $dato->getId() . "\">" . $dato->getNombres() . "</option> ";
+//                                            echo $opcion;
+//                                        }
+//                                        
+                                    ?>
+                                    </select>-->
+                                    <input type="text" name="ced_cli" placeholder="Cédula" class="cedula" required/>
+                                    <button type="submit" value="cargar_cliente_cedula" class="button-ingresar" name="opcion">
+                                        <i class="ico_guardar far fa-search-minus" aria-hidden="true"></i>
+                                    </button>
+
+                                    <div>Nombre</div>
+                                    <i class="ico_user fas fa-user-tie"></i>
+                                    <input type="text" name="nombres" value="<?php echo $cli->getNombres(); ?>" placeholder="Nombre" class="nombre" required/></br>
+                                    <div>Dirección</div>
+                                    <i class="ico_user fa fa-road"></i>
+                                    <input type="text" name="direccion" value="<?php echo $cli->getDireccion(); ?>" placeholder="Dirección" class="direccion" required/></br>
+                                    <div>Telefono</div>
+                                    <i class="ico_user fas fa-phone"></i>
+                                    <input type="text" name="telefono" value="<?php echo $cli->getTelefono(); ?> " placeholder="Telefono" class="telefono" required/></br>
+                                    <div>Correo</div>
+                                    <i class="ico_telefono far fa-envelope"></i>
+                                    <input type="text" name="correo" value="<?php echo $cli->getCorreo(); ?> " placeholder="Correo" class="correo" required/></br>
+                                </section>
+                            </form>
+                            <form action="../../controller/controller.php">
+                                <section class="datos">
                                     <div>Empleado</div>
                                     <i class="ico_cedula fas fa-user-tie" aria-hidden="true"></i>
                                     <select name="id_emp" class="tipo" >
@@ -124,9 +151,34 @@ session_start();
                                         }
                                         ?>
                                     </select></br>
+                                </section>
+                            </form>
+                            <form action="../../controller/controller.php">
+                                <section class="datos">
+                                    <div>Coche</div>
+                                    <i class="ico_cedula fas fa-car" aria-hidden="true"></i>
+                                    <select name="id_coche" class="tipo">
+                                        <?php
+                                        include '../../model/Coches.php';
+                                        $registro = unserialize($_SESSION['lista_coche']);
+                                        foreach ($registro as $dato) {
+                                            $opcion = "<option value=\"" . $dato->getId_coche() . "\">" . $dato->getDescripcion_coche() . "</option>";
+                                            echo $opcion;
+                                        }
+                                        ?>
+                                    </select>
+                                    <div>Valor</div>
+                                    <i class="ico_telefono far fa-money-check"></i>
+                                    <input type="text" name="valor" placeholder="Valor" class="valor" required/></br>
+                                    <div>Tiempo de Inicio</div>
+                                    <i class="ico_telefono far fa-envelope"></i>
+                                    <input type="text" name="tiempo_ini" placeholder="Tiempo de Inicio" class="tiempo" required/></br>
+                                    <div>Tiempo Fin</div>
+                                    <i class="ico_telefono far fa-envelope"></i>
+                                    <input type="text" name="tiempo_fin" placeholder="Tiempo Finalizado" class="tiempo" required/></br>
                                     <div>Valor Total</div>
                                     <i class="ico_direccion fas fa-map-marker-alt" aria-hidden="true"></i>
-                                    <input type="text" name="valor_total" placeholder="Valor Total" class="direccion" required/></br>
+                                    <input type="text" name="valor_total" placeholder="Valor Total" class="valor" required/></br>
                                     <input type="hidden" value="guardar_alquiler" name="opcion">
                                     <button type="submit" class="button-guardar">
                                         <i class="ico_guardar far fa-save" aria-hidden="true"></i>
@@ -143,6 +195,10 @@ session_start();
                                             <th>ID</th>
                                             <th>CLIENTE</th>
                                             <th>EMPLEADO</th>
+                                            <th>COCHE</th>
+                                            <th>VALOR</th>
+                                            <th>INICIO</th>
+                                            <th>FIN</th>
                                             <th>VALOR TOTAL</th>
                                             <th>ELIMINAR</th>
                                             <th>ACTUALIZAR</th>
@@ -150,7 +206,8 @@ session_start();
                                     </thead>
                                     <tbody>
                                         <?php
-                                        include '../../model/Alquiler.php';
+                                        include_once '../../model/Alquiler.php';
+                                        include_once '../../model/Cliente.php';
                                         if (isset($_SESSION['lista_alquiler'])) {
                                             $registro = unserialize($_SESSION['lista_alquiler']);
                                             foreach ($registro as $dato) {

@@ -105,8 +105,6 @@ session_start();
                             ?>
                             <form action="../../controller/controller.php">
 
-
-
                                 <section class="datos">
                                     <div>Id</div>
                                     <i class="ico_keyid fas fa-key" aria-hidden="true"></i>
