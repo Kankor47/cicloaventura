@@ -179,7 +179,7 @@ session_start();
                                     <div>Valor Total</div>
                                     <i class="ico_direccion fas fa-map-marker-alt" aria-hidden="true"></i>
                                     <input type="text" name="valor_total" placeholder="Valor Total" class="valor" required/></br>
-                                    <input type="hidden" value="guardar_alquiler" name="opcion">
+                                    <input type="hidden" value="guardar_completo" name="opcion">
                                     <button type="submit" class="button-guardar">
                                         <i class="ico_guardar far fa-save" aria-hidden="true"></i>
                                     </button>
@@ -196,9 +196,9 @@ session_start();
                                             <th>CLIENTE</th>
                                             <th>EMPLEADO</th>
                                             <th>COCHE</th>
-                                            <th>VALOR</th>
                                             <th>INICIO</th>
                                             <th>FIN</th>
+                                            <th>VALOR</th>
                                             <th>VALOR TOTAL</th>
                                             <th>ELIMINAR</th>
                                             <th>ACTUALIZAR</th>
@@ -207,13 +207,17 @@ session_start();
                                     <tbody>
                                         <?php
                                         include_once '../../model/AlquilerCompleto.php';
-                                        if (isset($_SESSION['lista_alquiler'])) {
+                                        if (isset($_SESSION['lista_completo'])) {
                                             $registro = unserialize($_SESSION['lista_alquiler']);
                                             foreach ($registro as $dato) {
                                                 echo "<tr>";
                                                 echo "<td>" . $dato->getId_alqui() . "</td>";
                                                 echo "<td>" . $dato->getId_cli() . "</td>";
                                                 echo "<td>" . $dato->getId_emp() . "</td>";
+                                                echo "<td>" . $dato->getId_coche() . "</td>";
+                                                echo "<td>" . $dato->getTiempo_ini() . "</td>";
+                                                echo "<td>" . $dato->getTiempo_fin() . "</td>";
+                                                echo "<td>" . $dato->getValor() . "</td>";
                                                 echo "<td>" . $dato->getValor_total() . "</td>";
                                                 echo "<td><a href='../../controller/controller.php?opcion=eliminar_alquiler&id=" . $dato->getId_alqui() . "' class=\"eliminar\"><i class=\"ico_borrar far fa-trash-alt\" aria-hidden=\"true\"></i></a></td>";
                                                 echo "<td><a href='../../controller/controller.php?opcion=cargar_alquiler&id=" . $dato->getId_alqui() . "' class=\"actualizar\"><i class=\"ico_actualizar fas fa-pencil-alt\" aria-hidden=\"true\"></i></a></td>";
