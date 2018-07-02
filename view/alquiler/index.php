@@ -125,16 +125,16 @@ session_start();
 
                                     <div>Nombre</div>
                                     <i class="ico_user fas fa-user-tie"></i>
-                                    <input type="text" name="nombres" value="<?php echo $cli->getNombres(); ?>" placeholder="Nombre" class="nombre" required/></br>
+                                    <input type="text" name="nombres" value="<?php echo $cli->getNombres(); ?>" placeholder="Nombre" class="nombre"/></br>
                                     <div>Dirección</div>
                                     <i class="ico_user fa fa-road"></i>
-                                    <input type="text" name="direccion" value="<?php echo $cli->getDireccion(); ?>" placeholder="Dirección" class="direccion" required/></br>
+                                    <input type="text" name="direccion" value="<?php echo $cli->getDireccion(); ?>" placeholder="Dirección" class="direccion" /></br>
                                     <div>Telefono</div>
                                     <i class="ico_user fas fa-phone"></i>
-                                    <input type="text" name="telefono" value="<?php echo $cli->getTelefono(); ?> " placeholder="Telefono" class="telefono" required/></br>
+                                    <input type="text" name="telefono" value="<?php echo $cli->getTelefono(); ?> " placeholder="Telefono" class="telefono" /></br>
                                     <div>Correo</div>
                                     <i class="ico_telefono far fa-envelope"></i>
-                                    <input type="text" name="correo" value="<?php echo $cli->getCorreo(); ?> " placeholder="Correo" class="correo" required/></br>
+                                    <input type="text" name="correo" value="<?php echo $cli->getCorreo(); ?> " placeholder="Correo" class="correo" /></br>
                                 </section>
                             </form>
                             <form action="../../controller/controller.php">
@@ -206,8 +206,7 @@ session_start();
                                     </thead>
                                     <tbody>
                                         <?php
-                                        include_once '../../model/Alquiler.php';
-                                        include_once '../../model/Cliente.php';
+                                        include_once '../../model/AlquilerCompleto.php';
                                         if (isset($_SESSION['lista_alquiler'])) {
                                             $registro = unserialize($_SESSION['lista_alquiler']);
                                             foreach ($registro as $dato) {

@@ -10,7 +10,7 @@ require_once '../model/ModelMantenimiento.php';
 require_once '../model/ModelAlquiler.php';
 require_once '../model/ModelInventario.php';
 require_once '../model/ModelDetalle.php';
-
+require_once '../model/AlquilerCompleto.php';
 
 session_start();
 $usuario = new ModelUsuario();
@@ -23,6 +23,7 @@ $mantenimiento = new ModelMantenimiento();
 $alquiler = new ModelAlquiler();
 $inventario= new ModelInventario();
 $detalle = new ModelDetalle();
+$completo = new ModelAlquilerCompleto();
 $opcion = $_REQUEST['opcion'];
 
 switch ($opcion) {
@@ -402,6 +403,47 @@ switch ($opcion) {
         $alquiler->actualizarAlquiler($id_deta_alqui, $id_coche, $id_alqui, $valor,$tiempo_ini,$tiempo_fin);
         $listadetalles = $detalle->getDeta_alquis();
         $_SESSION['lista_detalle'] = serialize($listadetalles);
+        header('Location: ../view/alquiler/index.php');
+        break;
+    
+    //completo
+    case "guardar_commpleto":
+        $id_cli = $_REQUEST['id_cli'];
+        $id_emp = $_REQUEST['id_emp'];
+        $id_coche=$_REQUEST['id_coche'];
+        $id_alqui=$_REQUEST['id_alqui'];
+        $valor = $_REQUEST['valor'];
+        $tiempo_ini = $_REQUEST['tiempo_ini'];
+        $tiempo_fin = $_REQUEST['tiempo_fin'];
+        $valor_total = $_REQUEST['valor_total'];
+        $completo->crearCompleto($id_cli, $id_emp,$id_coche,$id_alqui,$valor,$tiempo_ini,$tiempo_fin, $valor_total);
+        $listaAlquilers = $alquiler->getAlquilers();
+        $_SESSION['lista_completo'] = serialize($listaAlquilers);
+        header('Location: ../view/alquiler/index.php');
+        break;
+    case "eliminar_alquiler":
+
+        $id = $_REQUEST['id'];
+        $alquiler->eliminarAlquiler($id);
+        $listaAlquilers = $alquiler->getAlquilers();
+        $_SESSION['lista_alquiler'] = serialize($listaAlquilers);
+        header('Location: ../view/alquiler/index.php');
+        break;
+    case "cargar_alquiler":
+        $id = $_REQUEST['id'];
+        $alqui = $alquiler->getAlquiler($id);
+        $_SESSION['alquiler'] = $alqui;
+        header('Location: ../view/alquiler/cargar.php');
+        break;
+    case "actualizar_alquiler":
+
+        $id_alqui = $_REQUEST['id_alqui'];
+        $id_cli = $_REQUEST['id_cli'];
+        $id_emp = $_REQUEST['id_emp'];
+        $valor_total = $_REQUEST['valor_total'];
+        $alquiler->actualizarAlquiler($id_alqui, $id_cli, $id_emp, $valor_total);
+        $listaAlquilers = $alquiler->getAlquilers();
+        $_SESSION['lista_alquiler'] = serialize($listaAlquilers);
         header('Location: ../view/alquiler/index.php');
         break;
     

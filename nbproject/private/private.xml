@@ -12,14 +12,15 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/cicloaventura/view/index.php</file>
-            <file>file:/C:/xampp/htdocs/cicloaventura/view/js/validaciones.js</file>
-            <file>file:/C:/xampp/htdocs/cicloaventura/view/empleado/index.php</file>
-            <file>file:/C:/xampp/htdocs/cicloaventura/view/css/login.css</file>
-            <file>file:/C:/xampp/htdocs/cicloaventura/view/css/registroCoche.css</file>
-            <file>file:/C:/xampp/htdocs/cicloaventura/view/menu/index.php</file>
-            <file>file:/C:/xampp/htdocs/cicloaventura/view/usuario/index.php</file>
-            <file>file:/C:/xampp/htdocs/cicloaventura/view/css/menu.css</file>
+            <file>file:/C:/xampp/htdocs/CycloAventura/model/ModelDetalle.php</file>
+            <file>file:/C:/xampp/htdocs/CycloAventura/controller/controller.php</file>
+            <file>file:/C:/xampp/htdocs/CycloAventura/model/Cliente.php</file>
+            <file>file:/C:/xampp/htdocs/CycloAventura/model/Coches.php</file>
+            <file>file:/C:/xampp/htdocs/CycloAventura/view/alquiler/index.php</file>
+            <file>file:/C:/xampp/htdocs/CycloAventura/view/cliente/index.php</file>
+            <file>file:/C:/xampp/htdocs/CycloAventura/model/ModelCliente.php</file>
+            <file>file:/C:/xampp/htdocs/CycloAventura/view/cliente/cargar.php</file>
+            <file>file:/C:/xampp/htdocs/CycloAventura/view/empleado/index.php</file>
         </group>
     </open-files>
 </project-private>
