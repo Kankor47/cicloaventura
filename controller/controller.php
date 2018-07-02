@@ -9,6 +9,7 @@ require_once '../model/ModelTipo.php';
 require_once '../model/ModelMantenimiento.php';
 require_once '../model/ModelAlquiler.php';
 require_once '../model/ModelInventario.php';
+require_once '../model/ModelDetalle.php';
 
 
 session_start();
@@ -21,6 +22,7 @@ $tipo = new ModelTipo();
 $mantenimiento = new ModelMantenimiento();
 $alquiler = new ModelAlquiler();
 $inventario= new ModelInventario();
+$detalle = new ModelDetalle();
 $opcion = $_REQUEST['opcion'];
 
 switch ($opcion) {
@@ -128,7 +130,6 @@ switch ($opcion) {
 
         break;
 
-
     //USUARIO
     case "guardar_usuario":
 
@@ -192,13 +193,11 @@ switch ($opcion) {
         $_SESSION['empleado'] = $emp;
         header('Location: ../view/empleado/cargar.php');
         break;
-
     case "buscar_empleado":
         $ced_emp = $_REQUEST['ced_emp'];
         $emp = $empleado->buscarEmpleado($ced_emp);
         $_SESSION['empleado'] = $emp;
         header('Location: ../view/empleado/index.php');
-
     case "actualizar_empleado":
 
         $id_empleado = $_REQUEST['id_empleado'];
@@ -254,7 +253,6 @@ switch ($opcion) {
         break;
 
     //COCHE
-
     case "guardar_coche":
 
         $id_tipo = $_REQUEST['tipo'];
@@ -265,7 +263,6 @@ switch ($opcion) {
         $_SESSION['lista_coche'] = serialize($listaCoches);
         header('Location: ../view/coche/index.php');
         break;
-
     case "eliminar_coche":
 
         $id_coche = $_REQUEST['id'];
