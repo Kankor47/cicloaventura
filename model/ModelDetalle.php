@@ -1,7 +1,7 @@
 <?php
 
-include_once './Database.php';
-include_once './Detalle_alquiler.php';
+include_once 'Database.php';
+include_once 'Detalle_alquiler.php';
 
 class ModelDetalle {
 

@@ -10,7 +10,7 @@ require_once '../model/ModelMantenimiento.php';
 require_once '../model/ModelAlquiler.php';
 require_once '../model/ModelInventario.php';
 require_once '../model/ModelDetalle.php';
-require_once '../model/AlquilerCompleto.php';
+require_once '../model/ModelAlquilerCompleto.php';
 
 session_start();
 $usuario = new ModelUsuario();

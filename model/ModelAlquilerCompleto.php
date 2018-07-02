@@ -1,7 +1,7 @@
 <?php
 
-include_once './Database.php';
-include_once './AlquilerCompleto.php';
+include_once 'Database.php';
+include_once 'AlquilerCompleto.php';
 
 class ModelAlquilerCompleto {
     public function getCompletos() {

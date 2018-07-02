@@ -33,6 +33,7 @@ class ModelCliente {
         $consulta->execute(array($cedula));
         $dato = $consulta->fetch(PDO::FETCH_ASSOC);
         $cliente = new Cliente();
+        $cliente->setCedula($dato['ced_cli']);
         $cliente->setNombres($dato['nom_cli']);
         $cliente->setDireccion($dato['dic_cli']);
         $cliente->setTelefono($dato['tel_cli']);

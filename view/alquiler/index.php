@@ -118,11 +118,13 @@ session_start();
 //                                        
                                     ?>
                                     </select>-->
-                                    <input type="text" name="ced_cli" placeholder="Cédula" class="cedula" required/>
+                                    <input type="text" name="ced_cli"  placeholder="Busqueda" class="cedula" required/>
                                     <button type="submit" value="cargar_cliente_cedula" class="button-ingresar" name="opcion">
                                         <i class="ico_guardar far fa-search-minus" aria-hidden="true"></i>
                                     </button>
-
+                                    <div>Cédula</div>
+                                    <i class="ico_cedula fa fa-id-card" aria-hidden="true"></i>
+                                    <input type="text" name="ced_cli" value="<?php echo $cli->getCedula(); ?>" placeholder="Busqueda" class="cedula" required/>
                                     <div>Nombre</div>
                                     <i class="ico_user fas fa-user-tie"></i>
                                     <input type="text" name="nombres" value="<?php echo $cli->getNombres(); ?>" placeholder="Nombre" class="nombre"/></br>
@@ -172,13 +174,10 @@ session_start();
                                     <input type="text" name="valor" placeholder="Valor" class="valor" required/></br>
                                     <div>Tiempo de Inicio</div>
                                     <i class="ico_telefono far fa-envelope"></i>
-                                    <input type="text" name="tiempo_ini" placeholder="Tiempo de Inicio" class="tiempo" required/></br>
+                                    <input type="time" name="tiempo_ini" placeholder="Tiempo de Inicio" class="tiempo" required/></br>
                                     <div>Tiempo Fin</div>
                                     <i class="ico_telefono far fa-envelope"></i>
-                                    <input type="text" name="tiempo_fin" placeholder="Tiempo Finalizado" class="tiempo" required/></br>
-                                    <div>Valor Total</div>
-                                    <i class="ico_direccion fas fa-map-marker-alt" aria-hidden="true"></i>
-                                    <input type="text" name="valor_total" placeholder="Valor Total" class="valor" required/></br>
+                                    <input type="time" name="tiempo_fin" placeholder="Tiempo Finalizado" class="tiempo" required/></br>
                                     <input type="hidden" value="guardar_completo" name="opcion">
                                     <button type="submit" class="button-guardar">
                                         <i class="ico_guardar far fa-save" aria-hidden="true"></i>
@@ -199,9 +198,7 @@ session_start();
                                             <th>INICIO</th>
                                             <th>FIN</th>
                                             <th>VALOR</th>
-                                            <th>VALOR TOTAL</th>
                                             <th>ELIMINAR</th>
-                                            <th>ACTUALIZAR</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -218,9 +215,7 @@ session_start();
                                                 echo "<td>" . $dato->getTiempo_ini() . "</td>";
                                                 echo "<td>" . $dato->getTiempo_fin() . "</td>";
                                                 echo "<td>" . $dato->getValor() . "</td>";
-                                                echo "<td>" . $dato->getValor_total() . "</td>";
                                                 echo "<td><a href='../../controller/controller.php?opcion=eliminar_alquiler&id=" . $dato->getId_alqui() . "' class=\"eliminar\"><i class=\"ico_borrar far fa-trash-alt\" aria-hidden=\"true\"></i></a></td>";
-                                                echo "<td><a href='../../controller/controller.php?opcion=cargar_alquiler&id=" . $dato->getId_alqui() . "' class=\"actualizar\"><i class=\"ico_actualizar fas fa-pencil-alt\" aria-hidden=\"true\"></i></a></td>";
 
                                                 echo "</tr>";
                                             }
