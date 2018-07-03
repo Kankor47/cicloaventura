@@ -407,7 +407,7 @@ switch ($opcion) {
         break;
     
     //completo
-    case "guardar_commpleto":
+    case "guardar_completo":
         $id_cli = $_REQUEST['id_cli'];
         $id_emp = $_REQUEST['id_emp'];
         $id_coche=$_REQUEST['id_coche'];
@@ -415,8 +415,7 @@ switch ($opcion) {
         $valor = $_REQUEST['valor'];
         $tiempo_ini = $_REQUEST['tiempo_ini'];
         $tiempo_fin = $_REQUEST['tiempo_fin'];
-        $valor_total = $_REQUEST['valor_total'];
-        $completo->crearCompleto($id_cli, $id_emp,$id_coche,$id_alqui,$valor,$tiempo_ini,$tiempo_fin, $valor_total);
+        $completo->crearCompleto(1, 1,$id_coche,1,$valor,$tiempo_ini,$tiempo_fin);
         $listaCompletos = $completo->getCompletos();
         $_SESSION['lista_completo'] = serialize($listaCompletos);
         header('Location: ../view/alquiler/index.php');

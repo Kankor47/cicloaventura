@@ -50,14 +50,14 @@ class ModelAlquilerCompleto {
         return $deta;
     }
 
-    public function crearCompleto($id_cli,$id_emp,$id_coche, $id_alqui, $valor,$tiempo_ini,$tiempo_fin,$valor_total) {
+    public function crearCompleto($id_cli,$id_emp,$id_coche, $id_alqui, $valor,$tiempo_ini,$tiempo_fin) {
 
         $pdo = Database::connect();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "insert into tbl_alquiler(id_cli,id_emp,valor_total) values(?,?,'?'); insert into tbl_detalle_alqui (id_coche, id_alqui,valor,tiempo_ini,tiempo_fin) values(?,?,'?',?,?)";
+        $sql = "insert into tbl_alquiler(id_cli,id_emp,valor_total) values(?,?,'0'); insert into tbl_detalle_alqui (id_coche, id_alqui,valor,tiempo_ini,tiempo_fin) values(?,?,'?',?,?)";
         $consulta = $pdo->prepare($sql);
         try {
-            $consulta->execute(array($id_cli,$id_emp,$id_coche, $id_alqui, $valor,$tiempo_ini,$tiempo_fin,$valor_total));
+            $consulta->execute(array($id_cli,$id_emp,$id_coche, $id_alqui, $valor,$tiempo_ini,$tiempo_fin));
         } catch (PDOException $e) {
             Database::disconnect();
             throw new Exception($e->getMessage());
@@ -88,5 +88,26 @@ class ModelAlquilerCompleto {
             throw new Exception($e->getMessage());
         }
         Database::disconnect();
+    }
+    
+    public function adicionarDetalle($id_coche,$tiempo_ini,$tiempo_fin,$valor){
+        //buscamos el producto:
+        $deta = new AlquilerCompleto();
+        $crudModel=new CrudModel();
+        $producto=$crudModel->getProducto($idProducto);
+        //creamos un nuevo detalle FacturaDet:
+        $facturaDet=new FacturaDet();
+        $facturaDet->setIdProducto($producto->getIdProducto());
+        $facturaDet->setNombreProducto($producto->getNombre());
+        $facturaDet->setCantidad($cantidad);
+        $facturaDet->setPrecio($producto->getPrecio());
+        $facturaDet->setPorcentajeIva($producto->getPorcentajeIva());
+        $facturaDet->setSubtotal($cantidad * $producto->getPrecio());
+        //adicionamos el nuevo detalle al array en memoria:
+        if(!isset($listaFacturaDet)){
+            $listaFacturaDet=array();
+        }
+        array_push($listaFacturaDet,$facturaDet);
+        return $listaFacturaDet;
     }
 }

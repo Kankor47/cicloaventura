@@ -205,7 +205,7 @@ session_start();
                                         <?php
                                         include_once '../../model/AlquilerCompleto.php';
                                         if (isset($_SESSION['lista_completo'])) {
-                                            $registro = unserialize($_SESSION['lista_alquiler']);
+                                            $registro = unserialize($_SESSION['lista_completo']);
                                             foreach ($registro as $dato) {
                                                 echo "<tr>";
                                                 echo "<td>" . $dato->getId_alqui() . "</td>";
