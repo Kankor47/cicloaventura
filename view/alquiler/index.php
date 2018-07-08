@@ -137,10 +137,7 @@ session_start();
                                     <div>Correo</div>
                                     <i class="ico_telefono far fa-envelope"></i>
                                     <input type="text" name="correo" value="<?php echo $cli->getCorreo(); ?> " placeholder="Correo" class="correo" /></br>
-                                </section>
-                            </form>
-                            <form action="../../controller/controller.php">
-                                <section class="datos">
+
                                     <div>Empleado</div>
                                     <i class="ico_cedula fas fa-user-tie" aria-hidden="true"></i>
                                     <select name="id_emp" class="tipo" >
@@ -169,16 +166,16 @@ session_start();
                                         }
                                         ?>
                                     </select>
-                                    <div>Valor</div>
-                                    <i class="ico_telefono far fa-money-check"></i>
-                                    <input type="text" name="valor" placeholder="Valor" class="valor" required/></br>
                                     <div>Tiempo de Inicio</div>
                                     <i class="ico_telefono far fa-envelope"></i>
                                     <input type="time" name="tiempo_ini" placeholder="Tiempo de Inicio" class="tiempo" required/></br>
                                     <div>Tiempo Fin</div>
                                     <i class="ico_telefono far fa-envelope"></i>
                                     <input type="time" name="tiempo_fin" placeholder="Tiempo Finalizado" class="tiempo" required/></br>
-                                    <input type="hidden" value="guardar_completo" name="opcion">
+                                    <div>Valor</div>
+                                    <i class="ico_telefono far fa-money-check"></i>
+                                    <input type="text" name="valor" placeholder="Valor" class="valor" required/></br>
+                                    <input type="hidden" value="adicionar_detalle" name="opcion">
                                     <button type="submit" class="button-guardar">
                                         <i class="ico_guardar far fa-save" aria-hidden="true"></i>
                                     </button>
@@ -191,9 +188,6 @@ session_start();
                                 <table data-toggle="table" id="tablaAlqui" class="display"> 
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>CLIENTE</th>
-                                            <th>EMPLEADO</th>
                                             <th>COCHE</th>
                                             <th>INICIO</th>
                                             <th>FIN</th>
@@ -203,15 +197,12 @@ session_start();
                                     </thead>
                                     <tbody>
                                         <?php
-                                        include_once '../../model/AlquilerCompleto.php';
-                                        if (isset($_SESSION['lista_completo'])) {
-                                            $registro = unserialize($_SESSION['lista_completo']);
+                                        include_once '../../model/ModelDetalle.php';
+                                        if (isset($_SESSION['listaAlqui_deta'])) {
+                                            $registro = unserialize($_SESSION['listaAlqui_deta']);
                                             foreach ($registro as $dato) {
                                                 echo "<tr>";
-                                                echo "<td>" . $dato->getId_alqui() . "</td>";
-                                                echo "<td>" . $dato->getId_cli() . "</td>";
-                                                echo "<td>" . $dato->getId_emp() . "</td>";
-                                                echo "<td>" . $dato->getId_coche() . "</td>";
+                                                echo "<td>" . $dato->getNommbre_coche() . "</td>";
                                                 echo "<td>" . $dato->getTiempo_ini() . "</td>";
                                                 echo "<td>" . $dato->getTiempo_fin() . "</td>";
                                                 echo "<td>" . $dato->getValor() . "</td>";

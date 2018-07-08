@@ -2,6 +2,7 @@
 
 include_once 'Database.php';
 include_once 'Detalle_alquiler.php';
+include_once 'ModelCoches.php';
 
 class ModelDetalle {
 
@@ -75,5 +76,25 @@ class ModelDetalle {
             throw new Exception($e->getMessage());
         }
         Database::disconnect();
+    }
+    
+    public function adicionarDetalle($listaAlqui_deta,$id_coche,$tiempo_ini,$tiempo_fin,$valor){
+        //buscamos el producto:
+        $coche = new ModelCoches();
+        $coch=$coche->getCoche($id_coche);
+        //creamos un nuevo detalle FacturaDet:
+        
+        $deta=new Detalle_alquiler();
+        $deta->setId_coche($coch->getId_coche());
+        $deta->getNommbre_coche($coch->getDescripcion_coche());
+        $deta->setTiempo_ini($tiempo_ini);
+        $deta->setTiempo_fin($tiempo_fin);
+        $deta->setValor($valor);
+        //adicionamos el nuevo detalle al array en memoria:
+        if(!isset($listaAlqui_deta)){
+            $listaAlqui_deta=array();
+        }
+        array_push($listaAlqui_deta,$deta);
+        return $listaAlqui_deta;
     }
 }

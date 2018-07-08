@@ -15,6 +15,7 @@ class Detalle_alquiler {
 
     private $id_deta_alqui;
     private $id_coche;
+    private $nombre_coche;
     private $id_alqui;
     private $valor;
     private $tiempo_ini;
@@ -34,6 +35,14 @@ class Detalle_alquiler {
 
     function setId_coche($id_coche) {
         $this->id_coche = $id_coche;
+    }
+    
+    function getNommbre_coche() {
+        return $this->nombre_coche;
+    }
+
+    function setNombre_coche($nombre_coche) {
+        $this->nombre_coche = $nombre_coche;
     }
     
     function getId_alqui() {

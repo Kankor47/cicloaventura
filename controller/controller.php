@@ -446,6 +446,27 @@ switch ($opcion) {
         header('Location: ../view/alquiler/index.php');
         break;
     
+    case "adicionar_detalle":
+        //obtenemos los parametros del formulario:
+        $idcoche=$_REQUEST['id_coche'];
+        $tiempo_ini=$_REQUEST['tiempo_ini'];
+        $tiempo_fin=$_REQUEST['tiempo_fin'];
+        $valor=$_REQUEST['valor'];
+        if(!isset($_SESSION['listaAlqui_deta'])){
+            $listaAlqui_deta=array();
+        }else{
+            $listaAlqui_deta=unserialize($_SESSION['listaAlqui_deta']);
+        }
+        try{
+            $listaAlqui_deta=$detalle->adicionarDetalle($listaAlqui_deta, $id_coche,$tiempo_ini,$tiempo_fin, $valor);
+            $_SESSION['listaAlqui_deta']=serialize($listaAlqui_deta);
+        }catch(Exception $e){
+            $mensajeError=$e->getMessage();
+            $_SESSION['mensajeError']=$mensajeError;
+        }
+        header('Location: ../view/alquiler/index.php');
+        break;
+    
     default:
         header('Location: ../view/index.php ');
 }
