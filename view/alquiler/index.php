@@ -8,7 +8,7 @@ and open the template in the editor.
 include_once '../../model/Cliente.php';
 include_once '../../model/Empleado.php';
 include_once '../../model/Coches.php';
-include_once '../../model/ModelAlquilerCompleto.php';
+
 session_start();
 ?>
 <html>
@@ -108,7 +108,6 @@ session_start();
                                     <i class="ico_cedula fas fa-user-tie" aria-hidden="true"></i>
                                     <select name="id_cli" class="tipo" >
                                         <?php
-                                        
                                         $registro = unserialize($_SESSION['lista_cliente']);
                                         foreach ($registro as $dato) {
                                             $opcion = "<option value=\"" . $dato->getId() . "\">" . $dato->getNombres() . "</option> ";
@@ -157,17 +156,13 @@ session_start();
                         </div>
                         <div id="principal2">
                             <section class="datosTabla">
-
                                 <table data-toggle="table" id="tablaAlqui" class="display"> 
                                     <thead>
                                         <tr>
                                             <th>ID</th>
                                             <th>ID CLIENTE</th>
-<!--                                            <th>CLIENTE</th>-->
                                             <th>ID EMPLEADO</th>
-<!--                                            <th>EMPLEADO</th>-->
                                             <th>ID COCHE</th>
-<!--                                            <th>COCHE</th>-->
                                             <th>INICIO</th>
                                             <th>FIN</th>
                                             <th>VALOR</th>
@@ -176,7 +171,7 @@ session_start();
                                     </thead>
                                     <tbody>
                                         <?php
-                                        
+                                        include '../../model/ModelAlquilerCompleto.php';
                                         if (isset($_SESSION['lista_completo'])) {
                                             $registro = unserialize($_SESSION['lista_completo']);
                                             foreach ($registro as $dato) {

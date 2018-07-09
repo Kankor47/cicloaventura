@@ -7,7 +7,7 @@ class ModelAlquilerCompleto {
     public function getCompletos() {
 
         $pdo = Database::connect();
-        $sql = "select * from tbl_detalle_alqui; select * from tbl_alquiler";
+        $sql = "select * from tbl_alquiler";
         $resultado = $pdo->query($sql);
         $listado = array();
         foreach ($resultado as $dato) {
@@ -28,7 +28,7 @@ class ModelAlquilerCompleto {
     public function getCompleto($id) {
 
         $pdo = Database::connect();
-        $sql = "select * from tbl_detalle_alqui where id_deta_alqui=?";
+        $sql = "select * from tblalquiler where id_alqui=?";
         $consulta = $pdo->prepare($sql);
         $consulta->execute(array($id));
         $dato = $consulta->fetch(PDO::FETCH_ASSOC);
@@ -44,14 +44,14 @@ class ModelAlquilerCompleto {
         return $deta;
     }
 
-    public function crearCompleto($id_alqui,$id_cli,$id_emp,$id_coche,$tiempo_ini,$tiempo_fin,$valor) {
+    public function crearCompleto($id_cli,$id_emp,$id_coche,$tiempo_ini,$tiempo_fin,$valor) {
 
         $pdo = Database::connect();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "insert into tbl_alquiler(id_alqui,id_cli,id_emp,id_coche,tiempo_ini,tiempo_fin,valor) values(0,?,?,?,?,?,'?');";
+        $sql = "insert into tbl_alquiler(id_cli,id_emp,id_coche,tiempo_ini,tiempo_fin,valor) values(?,?,?,?,?,?);";
         $consulta = $pdo->prepare($sql);
         try {
-            $consulta->execute(array($id_alqui,$id_cli,$id_emp,$id_coche,$tiempo_ini,$tiempo_fin,$valor));
+            $consulta->execute(array($id_cli,$id_emp,$id_coche,$tiempo_ini,$tiempo_fin,$valor));
         } catch (PDOException $e) {
             Database::disconnect();
             throw new Exception($e->getMessage());

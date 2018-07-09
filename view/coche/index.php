@@ -70,7 +70,7 @@ session_start();
                             <ul><a href="../coche/index.php" ><i class="ico_inicio fas fa-bus" aria-hidden="true"></i> Coches</a></ul>
                             <ul><a href="../categoria/index.php" ><i class="ico_inicio fas fa-tags" aria-hidden="true"></i> Categorias</a></ul>
                         </li>
-                          <a href="../alquiler/index.php"><i class="fas fa-stopwatch" aria-hidden="true"></i> Alquiler</a>
+                        <a href="../alquiler/index.php"><i class="fas fa-stopwatch" aria-hidden="true"></i> Alquiler</a>
                         <a href="../inventario/index.php"><i class="fas fa-clipboard-list" aria-hidden="true"></i> Inventario</a>
                         <a href="../mantenimiento/index.php"><i class="fas fa-toolbox" aria-hidden="true"></i> Mantenimiento</a>
                         <a href="../reportes/index.php"><i class=" fas fa-chart-line" aria-hidden="true"></i> Reportes</a>
@@ -98,22 +98,16 @@ session_start();
                         <h1>REGISTRO DE COCHES</h1>       
                     </section>
 
-
                     <div id="contenedor">
                         <div id="lateral2">
-
-
-
                             <form action="../../controller/controller.php">
-
-
                                 <section class="datos">
                                     <div>Tipo/Categoria</div>
                                     <i class="ico_tipo fas fa-tags" aria-hidden="true"></i>
                                     <select name="tipo" class="tipo" >
 
-                                         <option value="" disabled selected>Seleccionar</option>
-                                   
+                                        <option value="" disabled selected>Seleccionar</option>
+
                                         <?php
                                         include '../../model/Tipo.php';
                                         $registro = unserialize($_SESSION['lista_tipo']);
@@ -140,7 +134,6 @@ session_start();
                             </form>
                         </div>
                         <div id="principal2">
-
                             <section class="datosTabla">
                                 <table data-toggle="table" id="tablaCoche" class="display"> 
                                     <thead>
@@ -149,7 +142,7 @@ session_start();
                                             <th>CATEGORÍA</th>
                                             <th>DESCRIPCIÓN</th>
                                             <th>FECHA DE ADQUISICIÓN</th>
-                                           <th>ACTUALIZAR</th>
+                                            <th>ACTUALIZAR</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -167,7 +160,6 @@ session_start();
                                                 echo "<td>" . $dato->getDescripcion_coche() . "</td>";
                                                 echo "<td>" . $dato->getFecha_adquisicion() . "</td>";
                                                 echo "<td><a href='../../controller/controller.php?opcion=cargar_coche&id=" . $dato->getId_coche() . "' class=\"actualizar\"><i class=\"ico_actualizar fas fa-pencil-alt\" aria-hidden=\"true\"></i></a></td>";
-
                                                 echo "</tr>";
                                             }
                                         } else {

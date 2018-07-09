@@ -87,7 +87,7 @@ class ModelDetalle {
         
         $deta=new Detalle_alquiler();
         $deta->setId_coche($coch->getId_coche());
-        $deta->getNombre_coche($coch->getDescripcion_coche());
+        $deta->setNombre_coche($coch->getDescripcion_coche());
         $deta->setTiempo_ini($tiempo_ini);
         $deta->setTiempo_fin($tiempo_fin);
         $deta->setValor($valor);
