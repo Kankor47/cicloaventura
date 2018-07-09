@@ -15,13 +15,10 @@ class ModelAlquilerCompleto {
             $deta->getId_alqui($dato['id_alqui']);
             $deta->getId_cli($dato['id_cli']);
             $deta->getId_emp($dato['id_emp']);
-            $deta->setId_deta_alqui($dato['id_deta_alqui']);
             $deta->setId_coche($dato['id_coche']);
-            $deta->setId_alqui($dato['id_alqui']);
-            $deta->setValor($dato['valor']);
             $deta->setTiempo_ini($dato['tiempo_ini']);
             $deta->setTiempo_fin($dato['tiempo_fin']);
-            $deta->getValor_total($dato['valor_total']);
+            $deta->setValor($dato['valor']);
             array_push($listado, $deta);
         }
         Database::disconnect();
@@ -39,25 +36,22 @@ class ModelAlquilerCompleto {
             $deta->getId_alqui($dato['id_alqui']);
             $deta->getId_cli($dato['id_cli']);
             $deta->getId_emp($dato['id_emp']);
-            $deta->setId_deta_alqui($dato['id_deta_alqui']);
             $deta->setId_coche($dato['id_coche']);
-            $deta->setId_alqui($dato['id_alqui']);
-            $deta->setValor($dato['valor']);
             $deta->setTiempo_ini($dato['tiempo_ini']);
             $deta->setTiempo_fin($dato['tiempo_fin']);
-            $deta->getValor_total($dato['valor_total']);
+            $deta->setValor($dato['valor']);
         Database::disconnect();
         return $deta;
     }
 
-    public function crearCompleto($id_cli,$id_emp,$id_coche, $id_alqui, $valor,$tiempo_ini,$tiempo_fin) {
+    public function crearCompleto($id_alqui,$id_cli,$id_emp,$id_coche,$tiempo_ini,$tiempo_fin,$valor) {
 
         $pdo = Database::connect();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "insert into tbl_alquiler(id_cli,id_emp,valor_total) values(?,?,'0'); insert into tbl_detalle_alqui (id_coche, id_alqui,valor,tiempo_ini,tiempo_fin) values(?,?,'?',?,?)";
+        $sql = "insert into tbl_alquiler(id_alqui,id_cli,id_emp,id_coche,tiempo_ini,tiempo_fin,valor) values(0,?,?,?,?,?,'?');";
         $consulta = $pdo->prepare($sql);
         try {
-            $consulta->execute(array($id_cli,$id_emp,$id_coche, $id_alqui, $valor,$tiempo_ini,$tiempo_fin));
+            $consulta->execute(array($id_alqui,$id_cli,$id_emp,$id_coche,$tiempo_ini,$tiempo_fin,$valor));
         } catch (PDOException $e) {
             Database::disconnect();
             throw new Exception($e->getMessage());
@@ -69,20 +63,18 @@ class ModelAlquilerCompleto {
 
         $pdo = Database::connect();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "delete from tbl_detalle_alqui where id_detea_alqui=?";
+        $sql = "delete from tbl_alquiler where id_alqui=?";
         $consulta = $pdo->prepare($sql);
         $consulta->execute(array($id));
         Database::disconnect();
     }
 
-    public function actualizarCompleto($id_deta_alqui,$id_coche, $id_alqui, $valor,$tiempo_ini,$tiempo_fin) {
-
-
+    public function actualizarCompleto($id_alqui,$id_cli,$id_emp,$id_coche,$tiempo_ini,$tiempo_fin,$valor) {
         $pdo = Database::connect();
-        $sql = "update tbl_detalle_alqui set id_coche=?,id_alqui=?,valor=?,tiempo_ini=?,tiempo_fin=? where id_deta_alqui=?";
+        $sql = "update tbl_alquiler set id_cli=?,id_emp=? id_coche=?,tiempo_ini=?,tiempo_fin=?,valor=? where id_alqui=?";
         $consulta = $pdo->prepare($sql);
         try {
-            $consulta->execute(array($id_deta_alqui,$id_coche, $id_alqui, $valor,$tiempo_ini,$tiempo_fin));
+            $consulta->execute(array($id_alqui,$id_cli,$id_emp,$id_coche,$tiempo_ini,$tiempo_fin,$valor));
         } catch (PDOException $e) {
             Database::disconnect();
             throw new Exception($e->getMessage());
@@ -90,24 +82,24 @@ class ModelAlquilerCompleto {
         Database::disconnect();
     }
     
-    public function adicionarDetalle($id_coche,$tiempo_ini,$tiempo_fin,$valor){
-        //buscamos el producto:
-        $deta = new AlquilerCompleto();
-        $crudModel=new CrudModel();
-        $producto=$crudModel->getProducto($idProducto);
-        //creamos un nuevo detalle FacturaDet:
-        $facturaDet=new FacturaDet();
-        $facturaDet->setIdProducto($producto->getIdProducto());
-        $facturaDet->setNombreProducto($producto->getNombre());
-        $facturaDet->setCantidad($cantidad);
-        $facturaDet->setPrecio($producto->getPrecio());
-        $facturaDet->setPorcentajeIva($producto->getPorcentajeIva());
-        $facturaDet->setSubtotal($cantidad * $producto->getPrecio());
-        //adicionamos el nuevo detalle al array en memoria:
-        if(!isset($listaFacturaDet)){
-            $listaFacturaDet=array();
-        }
-        array_push($listaFacturaDet,$facturaDet);
-        return $listaFacturaDet;
-    }
+//    public function adicionarDetalle($id_coche,$tiempo_ini,$tiempo_fin,$valor){
+//        //buscamos el producto:
+//        $deta = new AlquilerCompleto();
+//        $crudModel=new CrudModel();
+//        $producto=$crudModel->getProducto($idProducto);
+//        //creamos un nuevo detalle FacturaDet:
+//        $facturaDet=new FacturaDet();
+//        $facturaDet->setIdProducto($producto->getIdProducto());
+//        $facturaDet->setNombreProducto($producto->getNombre());
+//        $facturaDet->setCantidad($cantidad);
+//        $facturaDet->setPrecio($producto->getPrecio());
+//        $facturaDet->setPorcentajeIva($producto->getPorcentajeIva());
+//        $facturaDet->setSubtotal($cantidad * $producto->getPrecio());
+//        //adicionamos el nuevo detalle al array en memoria:
+//        if(!isset($listaFacturaDet)){
+//            $listaFacturaDet=array();
+//        }
+//        array_push($listaFacturaDet,$facturaDet);
+//        return $listaFacturaDet;
+//    }
 }

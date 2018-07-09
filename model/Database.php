@@ -8,7 +8,7 @@
 class Database {
 
     //Propiedades estaticas con la informacion de la conexion (DSN):
-    private static $dbName = 'cyclobdd';
+    private static $dbName = 'ciclobdd';
     private static $dbHost = 'localhost';
     private static $dbUsername = 'root';
     private static $dbUserPassword = '';

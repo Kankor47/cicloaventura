@@ -3,6 +3,7 @@
 include_once 'Database.php';
 include_once 'Detalle_alquiler.php';
 include_once 'ModelCoches.php';
+include_once 'Coches.php';
 
 class ModelDetalle {
 
@@ -86,7 +87,7 @@ class ModelDetalle {
         
         $deta=new Detalle_alquiler();
         $deta->setId_coche($coch->getId_coche());
-        $deta->getNommbre_coche($coch->getDescripcion_coche());
+        $deta->getNombre_coche($coch->getDescripcion_coche());
         $deta->setTiempo_ini($tiempo_ini);
         $deta->setTiempo_fin($tiempo_fin);
         $deta->setValor($valor);

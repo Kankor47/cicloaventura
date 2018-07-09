@@ -29,7 +29,7 @@ class ModelCoches {
     public function getCoche($id_coche) {
      
         $pdo = Database::connect();
-        $sql = "SELECT c.id_coche, t.tip_desc, c.descripcion_coche,c.fecha_adquisicion from tbl_coche c INNER JOIN tbl_tipo t ON c.id_tipo=t.id_tipo where id_coche=?";
+        $sql = "select * from tbl_coche where id_coche=?";
         $consulta = $pdo->prepare($sql);
         $consulta->execute(array($id_coche));
         $dato = $consulta->fetch(PDO::FETCH_ASSOC);

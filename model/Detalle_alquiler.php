@@ -37,7 +37,7 @@ class Detalle_alquiler {
         $this->id_coche = $id_coche;
     }
     
-    function getNommbre_coche() {
+    function getNombre_coche() {
         return $this->nombre_coche;
     }
 

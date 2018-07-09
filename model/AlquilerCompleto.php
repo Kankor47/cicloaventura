@@ -4,12 +4,10 @@ class AlquilerCompleto {
     private $id_alqui;
     private $id_cli;
     private $id_emp;
-    private $valor_total;
-    private $id_deta_alqui;
     private $id_coche;
-    private $valor;
     private $tiempo_ini;
     private $tiempo_fin;
+    private $valor;
 
     function getId_alqui() {
         return $this->id_alqui;
@@ -34,22 +32,6 @@ class AlquilerCompleto {
     function setId_emp($id_emp) {
         $this->id_emp = $id_emp;
     }
-
-    function getValor_total() {
-        return $this->valor_total;
-    }
-
-    function setValor_total($valor_total) {
-        $this->valor_total = $valor_total;
-    }
-    
-    function getId_deta_alqui() {
-        return $this->id_deta_alqui;
-    }
-
-    function setId_deta_alqui($id_deta_alqui) {
-        $this->id_deta_alqui = $id_deta_alqui;
-    }
     
     function getId_coche() {
         return $this->id_coche;
@@ -58,15 +40,7 @@ class AlquilerCompleto {
     function setId_coche($id_coche) {
         $this->id_coche = $id_coche;
     }
-    
-    function getValor() {
-        return $this->valor;
-    }
 
-    function setValor($valor) {
-        $this->valor = $valor;
-    }
-    
     function getTiempo_ini() {
         return $this->tiempo_ini;
     }
@@ -81,5 +55,13 @@ class AlquilerCompleto {
 
     function setTiempo_fin($tiempo_fin) {
         $this->tiempo_fin = $tiempo_fin;
+    }
+    
+        function getValor() {
+        return $this->valor;
+    }
+
+    function setValor($valor) {
+        $this->valor = $valor;
     }
 }
