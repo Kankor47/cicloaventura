@@ -48,8 +48,7 @@ switch ($opcion) {
             $_SESSION['lista_mantenimiento'] = serialize($listaMantenimiento);
              $listaInventario = $inventario->getInventario();
             $_SESSION['lista_inventario'] = serialize($listaInventario);
-            $listaCompletos = $completo->getCompletos();
-            $_SESSION['lista_completo'] = serialize($listaCompletos);
+
             
             header('Location: ../view/empleado/index.php');
 
@@ -417,12 +416,12 @@ switch ($opcion) {
         $tiempo_fin = $_REQUEST['tiempo_fin'];
         $valor = $_REQUEST['valor'];
         $completo->crearCompleto($id_cli,$id_emp,$id_coche,$tiempo_ini,$tiempo_fin,$valor);
-        $listaCompletos = $completo->getCompletos();
+        $listaCompletos = $completo->getCompletos($id_cli,$id_emp,$id_coche);
         $_SESSION['lista_completo'] = serialize($listaCompletos);
         header('Location: ../view/alquiler/index.php');
         break;
     case "eliminar_completo":
-        $id = $_REQUEST['id'];
+        $id = $_REQUEST['id_alqui'];
         $alquiler->eliminarAlquiler($id);
         $listaCompletos = $completo->getCompletos();
         $_SESSION['lista_completo'] = serialize($listaCompletos);
@@ -435,7 +434,6 @@ switch ($opcion) {
         header('Location: ../view/alquiler/cargar.php');
         break;
     case "actualizar_completo":
-
         $id_alqui = $_REQUEST['id_alqui'];
         $id_cli = $_REQUEST['id_cli'];
         $id_emp = $_REQUEST['id_emp'];

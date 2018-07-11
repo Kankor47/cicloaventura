@@ -5,10 +5,6 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <?php
-include_once '../../model/Cliente.php';
-include_once '../../model/Empleado.php';
-include_once '../../model/Coches.php';
-
 session_start();
 ?>
 <html>
@@ -108,6 +104,7 @@ session_start();
                                     <i class="ico_cedula fas fa-user-tie" aria-hidden="true"></i>
                                     <select name="id_cli" class="tipo" >
                                         <?php
+                                        include '../../model/Cliente.php';
                                         $registro = unserialize($_SESSION['lista_cliente']);
                                         foreach ($registro as $dato) {
                                             $opcion = "<option value=\"" . $dato->getId() . "\">" . $dato->getNombres() . "</option> ";
@@ -119,7 +116,7 @@ session_start();
                                     <i class="ico_cedula fas fa-user-tie" aria-hidden="true"></i>
                                     <select name="id_emp" class="tipo" >
                                         <?php
-                                        
+                                        include '../../model/Empleado.php';
                                         $registro = unserialize($_SESSION['lista_empleado']);
                                         foreach ($registro as $dato) {
                                             $opcion = "<option value=\"" . $dato->getId() . "\">" . $dato->getNombres() . "</option> ";
@@ -131,6 +128,7 @@ session_start();
                                     <i class="ico_cedula fas fa-car" aria-hidden="true"></i>
                                     <select name="id_coche" class="tipo">
                                         <?php
+                                        include '../../model/Coches.php';
                                         $registro= unserialize($_SESSION['lista_coche']);
                                         foreach ($registro as $dato) {
                                             $opcion = "<option value='" . $dato->getId_coche() . "'>" . $dato->getDescripcion_coche() . "</option>";
@@ -161,8 +159,11 @@ session_start();
                                         <tr>
                                             <th>ID</th>
                                             <th>ID CLIENTE</th>
+                                            <th>CLIENTE</th>
                                             <th>ID EMPLEADO</th>
+                                            <th>EMPLEADO</th>
                                             <th>ID COCHE</th>
+                                            <th>COCHE</th>
                                             <th>INICIO</th>
                                             <th>FIN</th>
                                             <th>VALOR</th>
@@ -171,26 +172,25 @@ session_start();
                                     </thead>
                                     <tbody>
                                         <?php
-                                        include '../../model/ModelAlquilerCompleto.php';
+                                        include '../../model/AlquilerCompleto.php';
                                         if (isset($_SESSION['lista_completo'])) {
                                             $registro = unserialize($_SESSION['lista_completo']);
                                             foreach ($registro as $dato) {
                                                 echo "<tr>";
                                                 echo "<td>" . $dato->getId_alqui() . "</td>";
                                                 echo "<td>" . $dato->getId_cli() . "</td>";
+                                                echo "<td>" . $dato->getNombre_cli() . "</td>";
                                                 echo "<td>" . $dato->getId_emp() . "</td>";
+                                                echo "<td>" . $dato->getNombre_emp() . "</td>";
                                                 echo "<td>" . $dato->getId_coche() . "</td>";
+                                                echo "<td>" . $dato->getDesc_coche() . "</td>";
                                                 echo "<td>" . $dato->getTiempo_ini() . "</td>";
                                                 echo "<td>" . $dato->getTiempo_fin() . "</td>";
                                                 echo "<td>" . $dato->getValor() . "</td>";
-                                                echo "<td><a href='../../controller/controller.php?opcion=eliminar_alquiler&id=" . $dato->getId_alqui() . "' class=\"eliminar\"><i class=\"ico_borrar far fa-trash-alt\" aria-hidden=\"true\"></i></a></td>";
-
+                                                echo "<td><a href='../../controller/controller.php?opcion=cargar_completo&id=" . $dato->getId_alqui() . "' class=\"actualizar\"><i class=\"ico_actualizar fas fa-pencil-alt\" aria-hidden=\"true\"></i></a></td>";
                                                 echo "</tr>";
                                             }
-                                        } else {
-                                            
-                                        }
-                                        
+                                        }                                         
                                         ?>
 
                                     </tbody>

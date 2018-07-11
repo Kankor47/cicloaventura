@@ -2,20 +2,32 @@
 
 include_once 'Database.php';
 include_once 'AlquilerCompleto.php';
+include_once 'Cliente.php';
+include_once 'Empleado.php';
+include_once 'Coches.php';
 
 class ModelAlquilerCompleto {
-    public function getCompletos() {
+    public function getCompletos($id_cli,$id_emp,$id_coche) {
 
+        $cliente = new ModelCliente();
+        $emple = new ModelEmpleado();
+        $coche = new ModelCoches();
+        $nombre_cli=$cliente->getCliente($id_cli);
+        $nombre_emp=$emple->getEmpleado($id_emp);
+        $desc_coche=$coche->getCoche($id_coche);
         $pdo = Database::connect();
         $sql = "select * from tbl_alquiler";
         $resultado = $pdo->query($sql);
         $listado = array();
         foreach ($resultado as $dato) {
             $deta = new AlquilerCompleto();
-            $deta->getId_alqui($dato['id_alqui']);
-            $deta->getId_cli($dato['id_cli']);
-            $deta->getId_emp($dato['id_emp']);
+            $deta->setId_alqui($dato['id_alqui']);
+            $deta->setId_cli($dato['id_cli']);
+            $deta->setNombre_cli($nombre_cli->getNombres());
+            $deta->setId_emp($dato['id_emp']);
+            $deta->setNombre_emp($nombre_emp->getNombres());
             $deta->setId_coche($dato['id_coche']);
+            $deta->setDesc_coche($desc_coche->setDescripcion_coche($descripcion_coche));
             $deta->setTiempo_ini($dato['tiempo_ini']);
             $deta->setTiempo_fin($dato['tiempo_fin']);
             $deta->setValor($dato['valor']);
@@ -33,9 +45,9 @@ class ModelAlquilerCompleto {
         $consulta->execute(array($id));
         $dato = $consulta->fetch(PDO::FETCH_ASSOC);
         $deta = new AlquilerCompleto();
-            $deta->getId_alqui($dato['id_alqui']);
-            $deta->getId_cli($dato['id_cli']);
-            $deta->getId_emp($dato['id_emp']);
+            $deta->setId_alqui($dato['id_alqui']);
+            $deta->setId_cli($dato['id_cli']);
+            $deta->setId_emp($dato['id_emp']);
             $deta->setId_coche($dato['id_coche']);
             $deta->setTiempo_ini($dato['tiempo_ini']);
             $deta->setTiempo_fin($dato['tiempo_fin']);
