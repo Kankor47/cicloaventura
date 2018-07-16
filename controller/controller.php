@@ -416,9 +416,10 @@ switch ($opcion) {
         $tiempo_fin = $_REQUEST['tiempo_fin'];
         $valor = $_REQUEST['valor'];
         $completo->crearCompleto($id_cli,$id_emp,$id_coche,$tiempo_ini,$tiempo_fin,$valor);
-        $listaCompletos = $completo->getCompletos($id_cli,$id_emp,$id_coche);
+        $listaCompletos = $completo->getCompletos();
         $_SESSION['lista_completo'] = serialize($listaCompletos);
         header('Location: ../view/alquiler/index.php');
+        
         break;
     case "eliminar_completo":
         $id = $_REQUEST['id_alqui'];
@@ -432,6 +433,12 @@ switch ($opcion) {
         $comple = $completo->getCompleto($id);
         $_SESSION['completo'] = $comple;
         header('Location: ../view/alquiler/cargar.php');
+        break;
+    case "imprimir_completo":
+        $id = $_REQUEST['id'];
+        $comple = $completo->getCompleto($id);
+        $_SESSION['completo'] = $comple;
+        header('Location: ../view/alquiler/resibo.php');
         break;
     case "actualizar_completo":
         $id_alqui = $_REQUEST['id_alqui'];

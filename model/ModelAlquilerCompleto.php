@@ -7,14 +7,14 @@ include_once 'Empleado.php';
 include_once 'Coches.php';
 
 class ModelAlquilerCompleto {
-    public function getCompletos($id_cli,$id_emp,$id_coche) {
+    public function getCompletos() {
 
         $cliente = new ModelCliente();
         $emple = new ModelEmpleado();
         $coche = new ModelCoches();
-        $nombre_cli=$cliente->getCliente($id_cli);
-        $nombre_emp=$emple->getEmpleado($id_emp);
-        $desc_coche=$coche->getCoche($id_coche);
+        
+        
+        
         $pdo = Database::connect();
         $sql = "select * from tbl_alquiler";
         $resultado = $pdo->query($sql);
@@ -23,11 +23,14 @@ class ModelAlquilerCompleto {
             $deta = new AlquilerCompleto();
             $deta->setId_alqui($dato['id_alqui']);
             $deta->setId_cli($dato['id_cli']);
+            $nombre_cli=$cliente->getCliente($deta->getId_cli());
             $deta->setNombre_cli($nombre_cli->getNombres());
             $deta->setId_emp($dato['id_emp']);
+            $nombre_emp=$emple->getEmpleado($deta->getId_emp());
             $deta->setNombre_emp($nombre_emp->getNombres());
             $deta->setId_coche($dato['id_coche']);
-            $deta->setDesc_coche($desc_coche->setDescripcion_coche($descripcion_coche));
+            $desc_coche=$coche->getCoche($deta->getId_coche());
+            $deta->setDesc_coche($desc_coche->getDescripcion_coche());
             $deta->setTiempo_ini($dato['tiempo_ini']);
             $deta->setTiempo_fin($dato['tiempo_fin']);
             $deta->setValor($dato['valor']);
@@ -58,6 +61,25 @@ class ModelAlquilerCompleto {
 
     public function crearCompleto($id_cli,$id_emp,$id_coche,$tiempo_ini,$tiempo_fin,$valor) {
 
+        $cliente = new ModelCliente();
+        $emple = new ModelEmpleado();
+        $coche = new ModelCoches();
+        $nombre_cli=$cliente->getCliente($id_cli);
+        $nombre_emp=$emple->getEmpleado($id_emp);
+        $desc_coche=$coche->getCoche($id_coche);
+        
+        
+        $deta = new AlquilerCompleto();
+        $deta->setId_cli($id_cli);
+        $deta->setNombre_cli($nombre_cli->getNombres());
+        $deta->setId_emp($id_emp);
+        $deta->setNombre_emp($nombre_emp->getNombres());
+        $deta->setId_coche($id_coche);
+        $deta->setDesc_coche($desc_coche->getDescripcion_coche());
+        $deta->setTiempo_ini($tiempo_ini);
+        $deta->setTiempo_fin($tiempo_fin);
+        $deta->setValor($valor);
+        
         $pdo = Database::connect();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "insert into tbl_alquiler(id_cli,id_emp,id_coche,tiempo_ini,tiempo_fin,valor) values(?,?,?,?,?,?);";
@@ -69,6 +91,7 @@ class ModelAlquilerCompleto {
             throw new Exception($e->getMessage());
         }
         Database::disconnect();
+        return $deta;
     }
 
     public function eliminarCompleto($id) {

@@ -167,7 +167,7 @@ session_start();
                                             <th>INICIO</th>
                                             <th>FIN</th>
                                             <th>VALOR</th>
-                                            <th>ELIMINAR</th>
+                                            <th>ACTUALIZAR</th>
                                         </tr>
                                     </thead>
                                     <tbody>

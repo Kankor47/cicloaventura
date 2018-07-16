@@ -65,7 +65,7 @@ class AlquilerCompleto {
     }
 
     function setDesc_coche($desc_coche) {
-        $this->desc_coche = $des_coche;
+        $this->desc_coche = $desc_coche;
     }
 
     function getTiempo_ini() {

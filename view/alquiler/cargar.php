@@ -5,7 +5,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <?php
-include '../../model/AlquilerCompleto.php';
+require_once '../../model/AlquilerCompleto.php';
 session_start();
 ?>
 <html>
@@ -81,7 +81,7 @@ session_start();
                 <div id="principal"> 
                     <section class="titulo_menu">
                         <p>CYCLO AVENTURA</p>
-                        <h1>REGISTRO DE COCHES</h1>       
+                        <h1>REGISTRO DE ALQUILER</h1>       
                     </section>
                     <div id="contenedor">
                         <div id="lateral2">
@@ -165,7 +165,6 @@ session_start();
                                     </thead>
                                     <tbody>
                                         <?php
-                                        include '../../model/AlquilerCompleto.php';
                                         if (isset($_SESSION['lista_completo'])) {
                                             $registro = unserialize($_SESSION['lista_completo']);
                                             foreach ($registro as $dato) {
