@@ -1,9 +1,9 @@
 <?php
-require 'fpdf/fpdf.php';
+require 'fpdf.php';
 class Plantilla extends FPDF {
     function Header()
 		{
-			$this->Image('../img/cohe.png', 5, 5, 30 );
+			
 			$this->SetFont('Arial','B',15);
 			$this->Cell(30);
 			$this->Cell(120,10, 'Reporte De Estados',0,0,'C');

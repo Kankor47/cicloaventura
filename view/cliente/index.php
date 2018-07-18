@@ -124,6 +124,7 @@ session_start();
                                     <button type="submit" class="button-guardar">
                                         <i class="ico_guardar far fa-save" aria-hidden="true"></i>
                                     </button>
+                                    <a target="_blank" href="reporte.php">Exportar a PDF</a>
                                 </section>
 
                             </form>

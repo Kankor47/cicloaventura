@@ -48,6 +48,8 @@ switch ($opcion) {
             $_SESSION['lista_mantenimiento'] = serialize($listaMantenimiento);
              $listaInventario = $inventario->getInventario();
             $_SESSION['lista_inventario'] = serialize($listaInventario);
+            $listaCompletos = $completo->getCompletos();
+        $_SESSION['lista_completo'] = serialize($listaCompletos);
 
             
             header('Location: ../view/empleado/index.php');
@@ -320,6 +322,11 @@ switch ($opcion) {
         $tip = $tipo->getTipo($id_tipo);
         $_SESSION['categoria'] = $tip;
         header('Location: ../view/categoria/cargar.php');
+        break;
+    case "imprimir_tipo":
+        $tip = $tipo->getTipos();
+        $_SESSION['categoria'] = $tip;
+        header('Location: ../view/categoria/reporte.php');
         break;
     case "actualizar_tipo":
         $id_tipo = $_REQUEST['id_tipo'];
