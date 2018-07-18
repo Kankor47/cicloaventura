@@ -16,7 +16,7 @@ session_start();
         <script src="../js/bootstrap-table.js"></script>
         <link href="../css/bootstrap-table.css" rel="stylesheet">
         <script type="text/javascript" src="../js/validaciones.js"></script>
-        <link rel="stylesheet" type="text/css" href="../css/registroCoche.css">
+        <link rel="stylesheet" type="text/css" href="../css/alquiler.css">
         <link rel="stylesheet" href="../css/jquery.dataTables.min.css">
         <script src="../js/jquery-3.3.1.min.js"></script>
         <script src="../js/jquery.dataTables.min.js"></script>
@@ -101,7 +101,7 @@ session_start();
                             <form action="../../controller/controller.php">
                                 <section class="datos">
                                     <div>Cliente</div>
-                                    <i class="ico_cedula fas fa-user-tie" aria-hidden="true"></i>
+                                    <i class="ico_user fas fa-user" aria-hidden="true"></i>
                                     <select name="id_cli" class="tipo" >
                                         <?php
                                         include '../../model/Cliente.php';
@@ -113,7 +113,7 @@ session_start();
                                         ?>
                                     </select></br>
                                     <div>Empleado</div>
-                                    <i class="ico_cedula fas fa-user-tie" aria-hidden="true"></i>
+                                    <i class="ico_user fa fa-user-tie" aria-hidden="true"></i>
                                     <select name="id_emp" class="tipo" >
                                         <?php
                                         include '../../model/Empleado.php';
@@ -125,7 +125,7 @@ session_start();
                                         ?>
                                     </select></br>
                                     <div>Coche</div>
-                                    <i class="ico_cedula fas fa-car" aria-hidden="true"></i>
+                                    <i class="ico_coche fas fa-bus" aria-hidden="true"></i>
                                     <select name="id_coche" class="tipo">
                                         <?php
                                         include '../../model/Coches.php';
@@ -137,19 +137,20 @@ session_start();
                                         ?>
                                     </select>
                                     <div>Tiempo de Inicio</div>
-                                    <i class="ico_telefono far fa-envelope"></i>
+                                    <i class="ico_tiempo fas fa-stopwatch"></i>
                                     <input type="datetime-local" value="<?php echo date("Y-m-d H:i:s"); ?>" name="tiempo_ini" placeholder="Tiempo de Inicio" class="tiempo" required/></br>
                                     <div>Tiempo Fin</div>
-                                    <i class="ico_telefono far fa-envelope"></i>
+                                     <i class="ico_tiempo fas fa-stopwatch"></i>
                                     <input type="datetime-local" value="<?php echo Date("Y-m-d H:i:s"); ?>" name="tiempo_fin" placeholder="Tiempo Finalizado" class="tiempo" required/></br>
                                     <div>Valor</div>
-                                    <i class="ico_telefono far fa-money-check"></i>
+                                   <i class="ico_dollar fas fa-dollar-sign"></i>
                                     <input type="text" name="valor" placeholder="Valor" class="valor" required/></br>
                                     <input type="hidden" value="guardar_completo" name="opcion">
                                     <button type="submit" class="button-guardar">
                                         <i class="ico_guardar far fa-save" aria-hidden="true"></i>
-                                    </button>
-                                    <a target="_blank" href="reporte.php">Exportar a PDF</a>
+                                    </button></br>
+                                    <a target="_blank" href="reporte.php" class="imprimir">
+                                        <i class="fas fa-print"></i></a>
                                 </section>
                             </form>
                         </div>
