@@ -148,7 +148,8 @@ session_start();
                                     <button type="submit" class="button-guardar" name="validar" disabled id="guardar">
                                         <i class="ico_guardar far fa-save" aria-hidden="true"></i>
                                     </button>
-                                    <a target="_blank" href="reporte.php">Exportar a PDF</a>
+                                 <a target="_blank" href="reporte.php" class="imprimir">
+                                        <i class="fas fa-print"></i></a>
                                 </section>
                             </form>
 
